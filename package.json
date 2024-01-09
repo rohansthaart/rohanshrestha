@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Rohan's Portfolio Website",
   "scripts": {
-    "dev": "next dev -H 0.0.0.0",
+    "dev": "next dev" ,
     "build": "next build",
     "prettier": "prettier --write .",
     "lint": "next lint"
