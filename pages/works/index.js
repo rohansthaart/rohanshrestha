@@ -20,7 +20,7 @@ const Works = () => {
         <SimpleGrid columns={[1, 1, 2]} gap={6}>
           <Section>
             <WorkGridItem
-              id="Nagarpalika"
+              id="nagarpalika"
               title="Nagarpalika Service Delivery"
               thumbnail={ServiceDelevery}
             >
