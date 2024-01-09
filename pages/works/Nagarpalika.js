@@ -20,8 +20,7 @@ const Work = () => (
       </P>
 
       <>
-        {' '}
-        <strong>Key Features:</strong>
+        <strong>Key Features: </strong>
         <List ml={4} my={2}>
           <ListItem>
             Microservices Architecture: The application integrates more than 10
