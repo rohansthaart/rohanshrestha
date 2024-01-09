@@ -4,7 +4,7 @@ import Section from '../../components/section'
 import { WorkGridItem } from '../../components/grid-item'
 import Layout from '../../components/layouts/article'
 
-import ServiceDelevery from '../../public/images/works/Nagarpalika.png'
+import serviceDelevery from '../../public/images/works/nagarpalika.png'
 import richInterior from '../../public/images/works/richInterior.png'
 import markDown from '../../public/images/works/markdown.png'
 import cocktail from '../../public/images/works/cocktaildb.png'
@@ -22,7 +22,7 @@ const Works = () => {
             <WorkGridItem
               id="nagarpalika"
               title="Nagarpalika Service Delivery"
-              thumbnail={ServiceDelevery}
+              thumbnail={serviceDelevery}
             >
               A technological marvel, serving as a central hub for millions of
               users in phidim
