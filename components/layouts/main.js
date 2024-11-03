@@ -22,7 +22,7 @@ const Main = ({ children, router }) => {
           href="/images/logo-dark.png"
           type="image/x-icon"
         />
-        <title>Rohan Shrestha - Homepage</title>
+        <title>Rohan Shrestha - Homepageeeee</title>
       </Head>
 
       <NavBar path={router.asPath} />
