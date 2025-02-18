@@ -9,6 +9,8 @@ import richInterior from '../../public/images/works/richInterior.png'
 import markDown from '../../public/images/works/markdown.png'
 import cocktail from '../../public/images/works/cocktaildb.png'
 import planning from '../../public/images/works/planning.png'
+import cgnetwebsite from '../../public/images/works/cgnetwebsite.png'
+
 
 const Works = () => {
   return (
@@ -18,6 +20,18 @@ const Works = () => {
           Works
         </Heading>
         <SimpleGrid columns={[1, 1, 2]} gap={6}>
+
+        <Section>
+            <WorkGridItem
+              id="cgnetwebsite"
+              title="CGNET Website"
+              thumbnail={cgnetwebsite}
+            >
+            CG NET | CG Communications Limited is Nepal’s leading and the most admired Internet Service Provider company headquartered in the heart of the capital city, Kathmandu.
+            </WorkGridItem>
+          </Section>
+
+
           <Section>
             <WorkGridItem
               id="nagarpalika"
