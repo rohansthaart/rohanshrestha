@@ -1,0 +1,6 @@
+{
+  "buildCommand": "next build",
+  "devCommand": "next dev",
+  "installCommand": "npm install",
+  "nodeVersion": "24.x"
+}

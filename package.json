@@ -11,6 +11,9 @@
   "keywords": [],
   "author": "Rohan Shrestha",
   "license": "MIT",
+  "engines": {
+    "node": "24.x"
+  },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/react": "^2.8.2",
