@@ -10,6 +10,7 @@ import markDown from '../../public/images/works/markdown.png'
 import cocktail from '../../public/images/works/cocktaildb.png'
 import planning from '../../public/images/works/planning.png'
 import cgnetwebsite from '../../public/images/works/cgnetwebsite.png'
+import pronunly from '../../public/images/works/pronunly.png'
 
 
 const Works = () => {
@@ -20,6 +21,17 @@ const Works = () => {
           Works
         </Heading>
         <SimpleGrid columns={[1, 1, 2]} gap={6}>
+
+           <Section>
+            <WorkGridItem
+              id="pronunly"
+              title="Pronunly"
+              thumbnail={pronunly}
+            >
+              Pronunly is a modern web-based pronunciation practice platform designed to help users improve their speaking accuracy, clarity, and confidence through interactive exercises and real-time feedback.
+            </WorkGridItem>
+          </Section>
+
 
         <Section>
             <WorkGridItem
