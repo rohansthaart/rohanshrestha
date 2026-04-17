@@ -11,7 +11,9 @@ import cocktail from '../../public/images/works/cocktaildb.png'
 import planning from '../../public/images/works/planning.png'
 import cgnetwebsite from '../../public/images/works/cgnetwebsite.png'
 import pronunly from '../../public/images/works/pronunly.png'
-
+import khajaqr from '../../public/images/works/khajaqr.jpeg'
+import kasthara from '../../public/images/works/Kasthara.png'
+import autismSansar from '../../public/images/works/autismsansar.png'
 
 const Works = () => {
   return (
@@ -21,6 +23,27 @@ const Works = () => {
           Works
         </Heading>
         <SimpleGrid columns={[1, 1, 2]} gap={6}>
+  <Section>
+            <WorkGridItem
+              id="kasthara"
+              title="Kasthara"
+              thumbnail={kasthara}
+            >
+              Kasthara is a personalized wood engraving studio based in Kathmandu,
+              Nepal, creating timeless handmade keepsakes for weddings, gifts, and
+              special events.
+            </WorkGridItem>
+          </Section>
+
+           <Section>
+            <WorkGridItem
+              id="khajaqr"
+              title="Khaja QR"
+              thumbnail={khajaqr}
+            >
+              Khaja QR is a modern web-based platform designed to help manage food delivery services through QR code technology, providing a seamless and efficient experience for both customers and restaurant owners.
+            </WorkGridItem>
+          </Section>
 
            <Section>
             <WorkGridItem
@@ -31,6 +54,18 @@ const Works = () => {
               Pronunly is a modern web-based pronunciation practice platform designed to help users improve their speaking accuracy, clarity, and confidence through interactive exercises and real-time feedback.
             </WorkGridItem>
           </Section>
+
+          
+           <Section>
+            <WorkGridItem
+              id="autismsansar"
+              title="Autism Sansar"
+              thumbnail={autismSansar}
+            >
+              Autism Sansar is a platform dedicated autism center, support, and inclusion in Nepal.
+            </WorkGridItem>
+          </Section>
+
 
 
         <Section>
