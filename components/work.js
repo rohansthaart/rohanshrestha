@@ -1,28 +1,46 @@
 import NextLink from 'next/link'
-import { Heading, Box, Image, Link, Badge } from '@chakra-ui/react'
+import {
+  Heading,
+  Box,
+  Image,
+  Link,
+  Badge,
+  useColorModeValue
+} from '@chakra-ui/react'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 
-export const Title = ({ children }) => (
-  <Box>
-    <Link as={NextLink} href="/works">
-      Works
-    </Link>
-    <span>
-      {' '}
-      <ChevronRightIcon />{' '}
-    </span>
-    <Heading display="inline-block" as="h3" fontSize={20} mb={4}>
-      {children}
-    </Heading>
-  </Box>
-)
+export const Title = ({ children }) => {
+  const mutedColor = useColorModeValue('gray.600', 'gray.300')
+
+  return (
+    <Box mb={5}>
+      <Link as={NextLink} href="/works" color={mutedColor} fontSize="sm">
+        Works
+      </Link>
+      <span>
+        {' '}
+        <ChevronRightIcon />{' '}
+      </span>
+      <Heading display="inline-block" as="h3" fontSize={24} mb={1}>
+        {children}
+      </Heading>
+    </Box>
+  )
+}
 
 export const WorkImage = ({ src, alt }) => (
-  <Image borderRadius="lg" w="full" src={src} alt={alt} mb={4} />
+  <Image
+    borderRadius="xl"
+    borderWidth="1px"
+    w="full"
+    src={src}
+    alt={alt}
+    mb={5}
+  />
 )
 
 export const Meta = ({ children }) => (
-  <Badge colorScheme="green" mr={2}>
+  <Badge colorScheme="teal" mr={2}>
     {children}
   </Badge>
 )

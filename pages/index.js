@@ -30,10 +30,13 @@ const Page = () => {
           mb={6}
           p={3}
           textAlign="center"
-          bg={useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')}
+          bg={useColorModeValue('whiteAlpha.700', 'whiteAlpha.200')}
+          borderWidth="1px"
+          borderColor={useColorModeValue('blackAlpha.200', 'whiteAlpha.300')}
+          boxShadow={useColorModeValue('card', 'cardDark')}
           css={{ backdropFilter: 'blur(10px)' }}
         >
-          Hello, I&apos;m a full-stack developer based in Nepal!
+          I build thoughtful web experiences from Kathmandu, Nepal.
         </Box>
 
         <Box display={{ md: 'flex' }}>
@@ -41,7 +44,7 @@ const Page = () => {
             <Heading as="h2" variant="page-title">
               Rohan Shrestha
             </Heading>
-            <p>Craftman (Artist / Developer ) </p>
+            <p>Craftsman (Artist / Developer)</p>
           </Box>
           <Box
             flexShrink={0}
@@ -62,7 +65,7 @@ const Page = () => {
           </Box>
         </Box>
 
-        <Section delay={0.1}>
+        <Section delay={0.08}>
           <Heading as="h3" variant="section-title">
             Work
           </Heading>
@@ -80,13 +83,13 @@ const Page = () => {
           </Paragraph>
           <Box align="center" my={4}>
             <NextLink href="/works">
-              <Button rightIcon={<ArrowForwardIcon />} colorScheme="teal">
-                My Protfolio
+              <Button rightIcon={<ArrowForwardIcon />} variant="subtle">
+                My Portfolio
               </Button>
             </NextLink>
           </Box>
         </Section>
-        <Section delay={0.2}>
+        <Section delay={0.16}>
           <Heading as="h3" variant={'section-title'}>
             Bio
           </Heading>
@@ -113,16 +116,16 @@ const Page = () => {
           Worked at CG Communication
         </Section>
 
-        <Section delay={0.3}>
+        <Section delay={0.24}>
           <Heading as="h3" variant="section-title">
-            I <span style={{color:"red"}}>♥</span>
+            I <span style={{ color: 'red' }}>♥</span>
           </Heading>
           <Paragraph>
             Art, Music, Movies, Books, Fitness, and of course, Coding!
           </Paragraph>
         </Section>
 
-        <Section delay={0.3}>
+        <Section delay={0.32} mb={1}>
           <Heading as="h3" variant="section-title">
             On the web
           </Heading>

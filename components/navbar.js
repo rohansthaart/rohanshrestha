@@ -21,14 +21,20 @@ import ThemeToggleButton from './theme-toggle-button'
 const LinkItem = ({ href, path, target, children, ...props }) => {
   const active = path === href
   const inactiveColor = useColorModeValue('gray.800', 'whiteAlpha.900')
+  const inactiveHoverBg = useColorModeValue('blackAlpha.100', 'whiteAlpha.200')
+
   return (
     <Link
       as={NextLink}
       href={href}
       scroll={false}
       p={2}
+      borderRadius="md"
       bg={active ? 'grassTeal' : undefined}
       color={active ? '#202023' : inactiveColor}
+      fontWeight={active ? 'semibold' : 'medium'}
+      _hover={{ bg: active ? 'grassTeal' : inactiveHoverBg }}
+      transition="all 0.2s ease"
       target={target}
       {...props}
     >
@@ -50,9 +56,11 @@ const Navbar = (props) => {
       position="fixed"
       as="nav"
       w="100%"
-      bg={useColorModeValue('#ffffff40', '#20202380')}
-      css={{ backdropFilter: 'blur(10px)' }}
-      zIndex={2}
+      bg={useColorModeValue('#fbf8f280', '#1f202680')}
+      css={{ backdropFilter: 'blur(14px)' }}
+      borderBottomWidth="1px"
+      borderColor={useColorModeValue('blackAlpha.200', 'whiteAlpha.300')}
+      zIndex={10}
       {...props}
     >
       <Container
@@ -75,7 +83,9 @@ const Navbar = (props) => {
           width={{ base: 'full', md: 'auto' }}
           alignItems="center"
           flexGrow={1}
-          mt={{ base: 0, md: -30 }}
+          mt={0}
+          ml={4}
+          spacing={1}
         >
           <LinkItem href="/works" path={path}>
             Works

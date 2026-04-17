@@ -1,4 +1,11 @@
-import { Container, Heading, SimpleGrid, Divider } from '@chakra-ui/react'
+import {
+  Container,
+  Heading,
+  SimpleGrid,
+  Divider,
+  Box,
+  useColorModeValue
+} from '@chakra-ui/react'
 
 import Section from '../../components/section'
 import { WorkGridItem } from '../../components/grid-item'
@@ -16,14 +23,30 @@ import kasthara from '../../public/images/works/Kasthara.png'
 import autismSansar from '../../public/images/works/autismsansar.png'
 
 const Works = () => {
+  const introBg = useColorModeValue('whiteAlpha.700', 'whiteAlpha.200')
+  const introBorder = useColorModeValue('blackAlpha.200', 'whiteAlpha.300')
+
   return (
     <Layout>
       <Container>
-        <Heading as="h3" fontSize={20} mb={4}>
+        <Heading as="h3" fontSize={24} mb={4}>
           Works
         </Heading>
+        <Box
+          mb={6}
+          p={4}
+          borderRadius="xl"
+          borderWidth="1px"
+          borderColor={introBorder}
+          bg={introBg}
+          boxShadow={useColorModeValue('card', 'cardDark')}
+        >
+          Websites and web applications I designed and developed with a focus on
+          practical UX, clean architecture, and business impact.
+        </Box>
+
         <SimpleGrid columns={[1, 1, 2]} gap={6}>
-  <Section>
+          <Section>
             <WorkGridItem
               id="kasthara"
               title="Kasthara"
@@ -35,7 +58,7 @@ const Works = () => {
             </WorkGridItem>
           </Section>
 
-           <Section>
+          <Section>
             <WorkGridItem
               id="khajaqr"
               title="Khaja QR"
@@ -45,7 +68,7 @@ const Works = () => {
             </WorkGridItem>
           </Section>
 
-           <Section>
+          <Section>
             <WorkGridItem
               id="pronunly"
               title="Pronunly"
@@ -55,8 +78,7 @@ const Works = () => {
             </WorkGridItem>
           </Section>
 
-          
-           <Section>
+          <Section>
             <WorkGridItem
               id="autismsansar"
               title="Autism Sansar"
@@ -66,18 +88,17 @@ const Works = () => {
             </WorkGridItem>
           </Section>
 
-
-
-        <Section>
+          <Section>
             <WorkGridItem
               id="cgnetwebsite"
               title="CGNET Website"
               thumbnail={cgnetwebsite}
             >
-            CG NET | CG Communications Limited is Nepal’s leading and the most admired Internet Service Provider company headquartered in the heart of the capital city, Kathmandu.
+              CG NET | CG Communications Limited is Nepal’s leading and the most
+              admired Internet Service Provider company headquartered in the
+              heart of the capital city, Kathmandu.
             </WorkGridItem>
           </Section>
-
 
           <Section>
             <WorkGridItem
@@ -105,7 +126,7 @@ const Works = () => {
         <Section delay={0.1}>
           <Divider my={6} />
 
-          <Heading as="h3" fontSize={20} mb={4}>
+          <Heading as="h3" fontSize={22} mb={4}>
             Old works
           </Heading>
         </Section>

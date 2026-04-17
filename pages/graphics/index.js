@@ -1,4 +1,4 @@
-import { Box, Container, Heading, SimpleGrid } from '@chakra-ui/react'
+import { Box, Container, Heading, SimpleGrid, useColorModeValue } from '@chakra-ui/react'
 
 import Layout from '../../components/layouts/article'
 import Section from '../../components/section'
@@ -143,36 +143,48 @@ const graphicsProjects = [
   }
 ]
 
-const Graphics = () => (
-  <Layout title="Graphics">
-    <Container>
-      <Heading as="h3" fontSize={20} mb={4}>
-        Graphics
-      </Heading>
+const Graphics = () => {
+  const introBg = useColorModeValue('whiteAlpha.700', 'whiteAlpha.200')
+  const introBorder = useColorModeValue('blackAlpha.200', 'whiteAlpha.300')
 
-      <Box my={4}>
-        Graphics Design Works - A collection of my commercial and promotional
-        design work including flyers, brochures, ID cards, photo booth frames,
-        and other branding materials.
-      </Box>
+  return (
+    <Layout title="Graphics">
+      <Container>
+        <Heading as="h3" fontSize={24} mb={4}>
+          Graphics
+        </Heading>
 
-      <SimpleGrid columns={[1, 1, 2]} gap={6}>
-        {graphicsProjects.map((project, index) => (
-          <Section key={project.title} delay={0.05 * (index + 1)}>
-            <GraphicsGridItem
-              title={project.title}
-              category={project.category}
-              client={project.client}
-              clientLogo={project.clientLogo}
-              description={project.description}
-              tools={project.tools}
-              thumbnail={project.thumbnail}
-            />
-          </Section>
-        ))}
-      </SimpleGrid>
-    </Container>
-  </Layout>
-)
+        <Box
+          my={4}
+          p={4}
+          borderRadius="xl"
+          borderWidth="1px"
+          borderColor={introBorder}
+          bg={introBg}
+          boxShadow={useColorModeValue('card', 'cardDark')}
+        >
+          Commercial design deliverables including leaflets, ID cards, flyers,
+          photobooth frames, logos, social graphics, and other branding assets.
+        </Box>
+
+        <SimpleGrid columns={[1, 1, 2]} gap={6}>
+          {graphicsProjects.map((project, index) => (
+            <Section key={project.title} delay={0.05 * (index + 1)}>
+              <GraphicsGridItem
+                title={project.title}
+                category={project.category}
+                client={project.client}
+                clientLogo={project.clientLogo}
+                description={project.description}
+                tools={project.tools}
+                thumbnail={project.thumbnail}
+              />
+            </Section>
+          ))}
+        </SimpleGrid>
+      </Container>
+    </Layout>
+  )
+}
 
 export default Graphics

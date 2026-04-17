@@ -1,9 +1,25 @@
-import { Box } from '@chakra-ui/react'
+import NextLink from 'next/link'
+import { Box, HStack, Link, useColorModeValue } from '@chakra-ui/react'
 
 const Footer = () => {
+  const borderColor = useColorModeValue('blackAlpha.200', 'whiteAlpha.300')
+
   return (
-    <Box align="center" opacity={0.4} fontSize="sm">
-      &copy; {new Date().getFullYear()} Rohan Shrestha. All Rights Reserved.
+    <Box mt={14} pt={6} borderTopWidth="1px" borderColor={borderColor}>
+      <Box align="center" opacity={0.8} fontSize="sm" mb={3}>
+        &copy; {new Date().getFullYear()} Rohan Shrestha. All Rights Reserved.
+      </Box>
+      <HStack spacing={5} justify="center" fontSize="sm" opacity={0.85}>
+        <Link as={NextLink} href="/works">
+          Works
+        </Link>
+        <Link as={NextLink} href="/graphics">
+          Graphics
+        </Link>
+        <Link as={NextLink} href="/arts">
+          Arts
+        </Link>
+      </HStack>
     </Box>
   )
 }
