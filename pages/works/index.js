@@ -22,6 +22,7 @@ import khajaqr from '../../public/images/works/khajaqr.jpeg'
 import kasthara from '../../public/images/works/Kasthara.png'
 import autismSansar from '../../public/images/works/autismsansar.png'
 
+
 const Works = () => {
   const introBg = useColorModeValue('whiteAlpha.700', 'whiteAlpha.200')
   const introBorder = useColorModeValue('blackAlpha.200', 'whiteAlpha.300')
@@ -84,7 +85,7 @@ const Works = () => {
               title="Autism Sansar"
               thumbnail={autismSansar}
             >
-              Autism Sansar is a platform dedicated autism center, support, and inclusion in Nepal.
+              Autism Sansar is a platform dedicated to supporting individuals with autism and promoting inclusion in Nepal.
             </WorkGridItem>
           </Section>
 
