@@ -24,13 +24,7 @@ import { ArrowForwardIcon } from '@chakra-ui/icons'
 import { IoLogoGithub, IoLogoInstagram, IoLogoLinkedin } from 'react-icons/io5'
 
 const timelineItems = [
-  {
-    period: '1998',
-    role: 'Born in Kathmandu, Nepal',
-    summary:
-      'Started a creative journey shaped by visual culture, local stories, and hands-on making.',
-    focus: 'Creative foundation through drawing, observation, and visual storytelling'
-  },
+
   {
     period: '2017 - 2024',
     role: 'B.E. Electronics and Communication',
