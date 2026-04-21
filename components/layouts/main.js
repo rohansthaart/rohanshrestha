@@ -12,7 +12,7 @@ const LazyVoxelDog = dynamic(() => import('../voxel-dog'), {
 
 const Main = ({ children, router }) => {
   return (
-    <Box as="main" pb={10} position="relative" overflow="hidden">
+    <Box as="main" pb={10} position="relative" overflowX="clip" overflowY="auto">
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="Rohan's homepage" />
@@ -38,6 +38,7 @@ const Main = ({ children, router }) => {
         filter="blur(80px)"
         pointerEvents="none"
         zIndex={0}
+        maxW="100vw"
       />
       <Box
         position="absolute"
@@ -50,9 +51,10 @@ const Main = ({ children, router }) => {
         filter="blur(95px)"
         pointerEvents="none"
         zIndex={0}
+        maxW="100vw"
       />
 
-      <Container maxW="container.md" pt={{ base: 20, md: 24 }} position="relative" zIndex={1}>
+      <Container maxW="container.md" pt={{ base: 20, md: 24 }} position="relative" zIndex={1} w="full" overflowX="visible">
         <LazyVoxelDog />
 
         {children}

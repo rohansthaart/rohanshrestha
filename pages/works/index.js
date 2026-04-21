@@ -22,16 +22,15 @@ import khajaqr from '../../public/images/works/khajaqr.jpeg'
 import kasthara from '../../public/images/works/Kasthara.png'
 import autismSansar from '../../public/images/works/autismsansar.png'
 
-
 const Works = () => {
   const introBg = useColorModeValue('whiteAlpha.700', 'whiteAlpha.200')
   const introBorder = useColorModeValue('blackAlpha.200', 'whiteAlpha.300')
 
   return (
-    <Layout>
+    <Layout title="Projects">
       <Container>
         <Heading as="h3" fontSize={24} mb={4}>
-          Works
+          Projects
         </Heading>
         <Box
           mb={6}
@@ -42,8 +41,8 @@ const Works = () => {
           bg={introBg}
           boxShadow={useColorModeValue('card', 'cardDark')}
         >
-          Websites and web applications I designed and developed with a focus on
-          practical UX, clean architecture, and business impact.
+          Selected product, website, and platform work with a focus on clean UI,
+          practical UX, dependable implementation, and real-world delivery.
         </Box>
 
         <SimpleGrid columns={[1, 1, 2]} gap={6}>
@@ -53,9 +52,8 @@ const Works = () => {
               title="Kasthara"
               thumbnail={kasthara}
             >
-              Kasthara is a personalized wood engraving studio based in Kathmandu,
-              Nepal, creating timeless handmade keepsakes for weddings, gifts, and
-              special events.
+              Built a polished website presence for a personalized wood engraving
+              brand, balancing visual warmth with clear product storytelling.
             </WorkGridItem>
           </Section>
 
@@ -65,7 +63,8 @@ const Works = () => {
               title="Khaja QR"
               thumbnail={khajaqr}
             >
-              Khaja QR is a modern web-based platform designed to help manage food delivery services through QR code technology, providing a seamless and efficient experience for both customers and restaurant owners.
+              Built a QR-driven food ordering platform focused on smoother customer
+              journeys and easier restaurant-side operations.
             </WorkGridItem>
           </Section>
 
@@ -75,7 +74,8 @@ const Works = () => {
               title="Pronunly"
               thumbnail={pronunly}
             >
-              Pronunly is a modern web-based pronunciation practice platform designed to help users improve their speaking accuracy, clarity, and confidence through interactive exercises and real-time feedback.
+              Designed and developed an interactive pronunciation product with a
+              strong emphasis on clarity, engagement, and responsive learning flows.
             </WorkGridItem>
           </Section>
 
@@ -85,7 +85,8 @@ const Works = () => {
               title="Autism Sansar"
               thumbnail={autismSansar}
             >
-              Autism Sansar is a platform dedicated to supporting individuals with autism and promoting inclusion in Nepal.
+              Delivered a mission-driven platform experience supporting accessibility,
+              outreach, and inclusion-focused communication.
             </WorkGridItem>
           </Section>
 
@@ -95,9 +96,8 @@ const Works = () => {
               title="CGNET Website"
               thumbnail={cgnetwebsite}
             >
-              CG NET | CG Communications Limited is Nepal’s leading and the most
-              admired Internet Service Provider company headquartered in the
-              heart of the capital city, Kathmandu.
+              Contributed production website delivery for a major ISP brand with
+              attention to presentation quality, usability, and maintainability.
             </WorkGridItem>
           </Section>
 
@@ -107,8 +107,8 @@ const Works = () => {
               title="Nagarpalika Service Delivery"
               thumbnail={serviceDelevery}
             >
-              A technological marvel, serving as a central hub for millions of
-              users in phidim
+              Helped shape a civic service platform for municipal workflows,
+              bringing structure to multi-service digital delivery.
             </WorkGridItem>
           </Section>
 
@@ -118,8 +118,8 @@ const Works = () => {
               title="Planning Management System, Pokhara Metropolitan City"
               thumbnail={planning}
             >
-              A technological marvel, serving as a central hub for millions of
-              users in pokhara
+              Built planning and management workflows for a city-level platform
+              focused on coordination, reporting, and operational clarity.
             </WorkGridItem>
           </Section>
         </SimpleGrid>
@@ -128,7 +128,7 @@ const Works = () => {
           <Divider my={6} />
 
           <Heading as="h3" fontSize={22} mb={4}>
-            Old works
+            Selected Experiments
           </Heading>
         </Section>
 
@@ -139,7 +139,7 @@ const Works = () => {
               thumbnail={richInterior}
               title="Rich Interior"
             >
-              E-commerce website for interior design company
+              Early e-commerce website work for an interior design brand.
             </WorkGridItem>
           </Section>
           <Section delay={0.1}>
@@ -148,7 +148,7 @@ const Works = () => {
               thumbnail={markDown}
               title="Markdown Editor"
             >
-              Markdown editor with live preview
+              A writing-focused editor experiment with live preview.
             </WorkGridItem>
           </Section>
           <Section delay={0.1}>
@@ -157,7 +157,7 @@ const Works = () => {
               thumbnail={cocktail}
               title="TheCocktailDB"
             >
-              A simple app to search cocktail recipes
+              A lightweight search interface built around external recipe data.
             </WorkGridItem>
           </Section>
         </SimpleGrid>

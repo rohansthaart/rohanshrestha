@@ -16,11 +16,11 @@ const ThemeToggleButton = () => {
         transition={{ duration: 0.6 }}
       >
         <IconButton
-          aria-label="Toggle theme"
+          aria-label="Toggle color mode"
           colorScheme={useColorModeValue('purple', 'orange')}
           icon={useColorModeValue(<MoonIcon />, <SunIcon />)}
           onClick={toggleColorMode}
-        ></IconButton>
+        />
       </motion.div>
 
         </AnimatePresence>

@@ -88,10 +88,10 @@ const Navbar = (props) => {
           spacing={1}
         >
           <LinkItem href="/works" path={path}>
-            Works
+            Projects
           </LinkItem>
           <LinkItem href="/graphics" path={path}>
-            Graphics
+            Design Work
           </LinkItem>
           <LinkItem href="/arts" path={path}>
             Arts
@@ -111,13 +111,13 @@ const Navbar = (props) => {
               />
               <MenuList>
                 <MenuItem as={MenuLink} href="/">
-                  About
+                  Home
                 </MenuItem>
                 <MenuItem as={MenuLink} href="/works">
-                  Works
+                  Projects
                 </MenuItem>
                 <MenuItem as={MenuLink} href="/graphics">
-                  Graphics
+                  Design Work
                 </MenuItem>
                 <MenuItem as={MenuLink} href="/arts">
                   Arts
