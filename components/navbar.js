@@ -1,131 +1,116 @@
 import { forwardRef } from 'react'
-import Logo from './logo'
 import NextLink from 'next/link'
 import {
-  Container,
   Box,
-  Link,
-  Stack,
-  Heading,
+  Container,
   Flex,
+  Heading,
+  IconButton,
+  Link,
   Menu,
+  MenuButton,
   MenuItem,
   MenuList,
-  MenuButton,
-  IconButton,
-  useColorModeValue
+  Stack
 } from '@chakra-ui/react'
 import { HamburgerIcon } from '@chakra-ui/icons'
-import ThemeToggleButton from './theme-toggle-button'
+import Logo from './logo'
 
-const LinkItem = ({ href, path, target, children, ...props }) => {
-  const active = path === href
-  const inactiveColor = useColorModeValue('gray.800', 'whiteAlpha.900')
-  const inactiveHoverBg = useColorModeValue('blackAlpha.100', 'whiteAlpha.200')
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/works', label: 'Projects' },
+  { href: '/graphics', label: 'Graphics' },
+  { href: '/arts', label: 'Arts' }
+]
+
+const LinkItem = ({ href, path, children }) => {
+  const active = href === '/' ? path === href : path.startsWith(href)
 
   return (
     <Link
       as={NextLink}
       href={href}
       scroll={false}
-      p={2}
-      borderRadius="md"
-      bg={active ? 'grassTeal' : undefined}
-      color={active ? '#202023' : inactiveColor}
-      fontWeight={active ? 'semibold' : 'medium'}
-      _hover={{ bg: active ? 'grassTeal' : inactiveHoverBg }}
-      transition="all 0.2s ease"
-      target={target}
-      {...props}
+      px={0}
+      py={2}
+      fontSize="sm"
+      fontWeight="600"
+      color={active ? 'accent' : 'muted'}
+      position="relative"
+      _hover={{ color: 'ink' }}
+      _after={
+        active
+          ? {
+              content: '""',
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              bottom: 0,
+              height: '1px',
+              bg: 'accent'
+            }
+          : undefined
+      }
     >
       {children}
     </Link>
   )
 }
 
-// eslint-disable-next-line react/display-name
-const MenuLink = forwardRef((props, ref) => (
-  <Link ref={ref} as={NextLink} {...props} />
-))
+const MenuLink = forwardRef(function MenuLink(props, ref) {
+  return <Link ref={ref} as={NextLink} {...props} />
+})
 
-const Navbar = (props) => {
-  const { path } = props
-
+const Navbar = ({ path }) => {
   return (
     <Box
-      position="fixed"
       as="nav"
-      w="100%"
-      bg={useColorModeValue('#fbf8f280', '#1f202680')}
-      css={{ backdropFilter: 'blur(14px)' }}
+      position="sticky"
+      top={0}
+      zIndex={20}
+      backdropFilter="blur(10px)"
+      bg="rgba(243, 241, 234, 0.9)"
       borderBottomWidth="1px"
-      borderColor={useColorModeValue('blackAlpha.200', 'whiteAlpha.300')}
-      zIndex={10}
-      {...props}
+      borderColor="line"
     >
-      <Container
-        display="flex"
-        p={2}
-        maxW="container.md"
-        wrap="wrap"
-        align="center"
-        justify="space-between"
-      >
-        <Flex align="center" mr={5}>
-          <Heading as="h1" size="lg" letterSpacing={'tighter'}>
+      <Container maxW="1160px" py={3}>
+        <Flex align="center" justify="space-between" gap={6}>
+          <Heading as="h1" size="md">
             <Logo />
           </Heading>
-        </Flex>
 
-        <Stack
-          direction={{ base: 'column', md: 'row' }}
-          display={{ base: 'none', md: 'flex' }}
-          width={{ base: 'full', md: 'auto' }}
-          alignItems="center"
-          flexGrow={1}
-          mt={0}
-          ml={4}
-          spacing={1}
-        >
-          <LinkItem href="/works" path={path}>
-            Projects
-          </LinkItem>
-          <LinkItem href="/graphics" path={path}>
-            Design Work
-          </LinkItem>
-          <LinkItem href="/arts" path={path}>
-            Arts
-          </LinkItem>
-        </Stack>
+          <Stack
+            direction="row"
+            spacing={8}
+            display={{ base: 'none', md: 'flex' }}
+            align="center"
+          >
+            {navItems.map(item => (
+              <LinkItem key={item.href} href={item.href} path={path}>
+                {item.label}
+              </LinkItem>
+            ))}
+          </Stack>
 
-        <Box flex={1} align="right">
-          <ThemeToggleButton />
-
-          <Box ml={2} display={{ base: 'inline-block', md: 'none' }}>
+          <Box display={{ base: 'block', md: 'none' }}>
             <Menu isLazy id="navbar-menu">
               <MenuButton
                 as={IconButton}
+                aria-label="Open navigation"
                 icon={<HamburgerIcon />}
                 variant="outline"
-                aria-label="Options"
+                borderColor="line"
               />
               <MenuList>
-                <MenuItem as={MenuLink} href="/">
-                  Home
-                </MenuItem>
-                <MenuItem as={MenuLink} href="/works">
-                  Projects
-                </MenuItem>
-                <MenuItem as={MenuLink} href="/graphics">
-                  Design Work
-                </MenuItem>
-                <MenuItem as={MenuLink} href="/arts">
-                  Arts
-                </MenuItem>
+                {navItems.map(item => (
+                  <MenuItem key={item.href} as={MenuLink} href={item.href}>
+                    {item.label}
+                  </MenuItem>
+                ))}
               </MenuList>
             </Menu>
           </Box>
-        </Box>
+        </Flex>
       </Container>
     </Box>
   )

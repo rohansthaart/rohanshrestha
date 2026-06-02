@@ -1,167 +1,209 @@
+import NextLink from 'next/link'
 import {
-  Container,
-  Heading,
-  SimpleGrid,
-  Divider,
+  AspectRatio,
   Box,
-  useColorModeValue
+  Button,
+  Grid,
+  Heading,
+  Image,
+  Link,
+  SimpleGrid,
+  Stack,
+  Text
 } from '@chakra-ui/react'
-
-import Section from '../../components/section'
-import { WorkGridItem } from '../../components/grid-item'
+import { ArrowForwardIcon } from '@chakra-ui/icons'
 import Layout from '../../components/layouts/article'
-
-import serviceDelevery from '../../public/images/works/nagarpalika.png'
-import richInterior from '../../public/images/works/richInterior.png'
-import markDown from '../../public/images/works/markdown.png'
-import cocktail from '../../public/images/works/cocktaildb.png'
-import planning from '../../public/images/works/planning.png'
-import cgnetwebsite from '../../public/images/works/cgnetwebsite.png'
-import pronunly from '../../public/images/works/pronunly.png'
-import khajaqr from '../../public/images/works/khajaqr.jpeg'
-import kasthara from '../../public/images/works/Kasthara.png'
-import autismSansar from '../../public/images/works/autismsansar.png'
+import Section from '../../components/section'
+import {
+  experimentalProjects,
+  featuredProjects,
+  primaryProjects
+} from '../../lib/content'
 
 const Works = () => {
-  const introBg = useColorModeValue('whiteAlpha.700', 'whiteAlpha.200')
-  const introBorder = useColorModeValue('blackAlpha.200', 'whiteAlpha.300')
+  const featured = featuredProjects[0]
 
   return (
     <Layout title="Projects">
-      <Container>
-        <Heading as="h3" fontSize={24} mb={4}>
-          Projects
-        </Heading>
-        <Box
-          mb={6}
-          p={4}
-          borderRadius="xl"
-          borderWidth="1px"
-          borderColor={introBorder}
-          bg={introBg}
-          boxShadow={useColorModeValue('card', 'cardDark')}
-        >
-          Selected product, website, and platform work with a focus on clean UI,
-          practical UX, dependable implementation, and real-world delivery.
-        </Box>
-
-        <SimpleGrid columns={[1, 1, 2]} gap={6}>
-          <Section>
-            <WorkGridItem
-              id="kasthara"
-              title="Kasthara"
-              thumbnail={kasthara}
-            >
-              Built a polished website presence for a personalized wood engraving
-              brand, balancing visual warmth with clear product storytelling.
-            </WorkGridItem>
-          </Section>
-
-          <Section>
-            <WorkGridItem
-              id="khajaqr"
-              title="Khaja QR"
-              thumbnail={khajaqr}
-            >
-              Built a QR-driven food ordering platform focused on smoother customer
-              journeys and easier restaurant-side operations.
-            </WorkGridItem>
-          </Section>
-
-          <Section>
-            <WorkGridItem
-              id="pronunly"
-              title="Pronunly"
-              thumbnail={pronunly}
-            >
-              Designed and developed an interactive pronunciation product with a
-              strong emphasis on clarity, engagement, and responsive learning flows.
-            </WorkGridItem>
-          </Section>
-
-          <Section>
-            <WorkGridItem
-              id="autismsansar"
-              title="Autism Sansar"
-              thumbnail={autismSansar}
-            >
-              Delivered a mission-driven platform experience supporting accessibility,
-              outreach, and inclusion-focused communication.
-            </WorkGridItem>
-          </Section>
-
-          <Section>
-            <WorkGridItem
-              id="cgnetwebsite"
-              title="CGNET Website"
-              thumbnail={cgnetwebsite}
-            >
-              Contributed production website delivery for a major ISP brand with
-              attention to presentation quality, usability, and maintainability.
-            </WorkGridItem>
-          </Section>
-
-          <Section>
-            <WorkGridItem
-              id="nagarpalika"
-              title="Nagarpalika Service Delivery"
-              thumbnail={serviceDelevery}
-            >
-              Helped shape a civic service platform for municipal workflows,
-              bringing structure to multi-service digital delivery.
-            </WorkGridItem>
-          </Section>
-
-          <Section>
-            <WorkGridItem
-              id="planning"
-              title="Planning Management System, Pokhara Metropolitan City"
-              thumbnail={planning}
-            >
-              Built planning and management workflows for a city-level platform
-              focused on coordination, reporting, and operational clarity.
-            </WorkGridItem>
-          </Section>
-        </SimpleGrid>
-
-        <Section delay={0.1}>
-          <Divider my={6} />
-
-          <Heading as="h3" fontSize={22} mb={4}>
-            Selected Experiments
-          </Heading>
+      <Stack spacing={{ base: 14, md: 18 }}>
+        <Section mb={0}>
+          <Stack spacing={5} maxW="860px">
+            <Text textStyle="eyebrow" color="accent">
+              Projects
+            </Text>
+            <Heading as="h1" variant="page-title" maxW={{ base: '10ch', md: '12ch' }}>
+              Product and website work built to ship.
+            </Heading>
+            <Text color="muted" fontSize={{ base: 'lg', md: 'xl' }} maxW="56ch">
+              A selection of full-stack products, public websites, and operational platforms.
+              The through-line is ownership: carrying ideas into working interfaces and
+              production-ready delivery.
+            </Text>
+          </Stack>
         </Section>
 
-        <SimpleGrid columns={[1, 1, 2]} gap={6}>
-          <Section delay={0.1}>
-            <WorkGridItem
-              id="richInterior"
-              thumbnail={richInterior}
-              title="Rich Interior"
+        {featured ? (
+          <Section mb={0}>
+            <Box
+              borderWidth="1px"
+              borderColor="line"
+              borderRadius="32px"
+              bg="paperElevated"
+              overflow="hidden"
             >
-              Early e-commerce website work for an interior design brand.
-            </WorkGridItem>
+              <Grid templateColumns={{ base: '1fr', lg: 'minmax(0, 1.1fr) minmax(360px, 0.9fr)' }}>
+                <AspectRatio ratio={1.15} minH={{ base: '260px', lg: '420px' }} bg="surface">
+                  <Image
+                    src={featured.thumbnail.src}
+                    alt={featured.title}
+                    w="100%"
+                    h="100%"
+                    objectFit="cover"
+                  />
+                </AspectRatio>
+
+                <Box p={{ base: 6, md: 8 }}>
+                  <Text textStyle="eyebrow" color="accent" mb={4}>
+                    Featured Case Study
+                  </Text>
+                  <Heading as="h2" size="lg" mb={4}>
+                    {featured.title}
+                  </Heading>
+                  <Text
+                    fontSize={{ base: 'lg', md: '2xl' }}
+                    lineHeight={1.4}
+                    letterSpacing="-0.02em"
+                    maxW="24ch"
+                    mb={4}
+                  >
+                    {featured.summary}
+                  </Text>
+                  <Text color="muted" maxW="58ch" mb={6}>
+                    {featured.role}
+                  </Text>
+                  <Button
+                    as={NextLink}
+                    href={`/works/${featured.slug}`}
+                    variant="subtle"
+                    rightIcon={<ArrowForwardIcon />}
+                  >
+                    Read featured case study
+                  </Button>
+                </Box>
+              </Grid>
+            </Box>
           </Section>
-          <Section delay={0.1}>
-            <WorkGridItem
-              id="markdown"
-              thumbnail={markDown}
-              title="Markdown Editor"
-            >
-              A writing-focused editor experiment with live preview.
-            </WorkGridItem>
-          </Section>
-          <Section delay={0.1}>
-            <WorkGridItem
-              id="cocktailDb"
-              thumbnail={cocktail}
-              title="TheCocktailDB"
-            >
-              A lightweight search interface built around external recipe data.
-            </WorkGridItem>
-          </Section>
-        </SimpleGrid>
-      </Container>
+        ) : null}
+
+        <Section mb={0}>
+          <Stack spacing={6}>
+            <Box>
+              <Text textStyle="eyebrow" color="accent" mb={3}>
+                Shipping Work
+              </Text>
+              <Heading as="h2" variant="section-title">
+                The main body of shipping work.
+              </Heading>
+            </Box>
+
+            <SimpleGrid columns={{ base: 1, xl: 2 }} spacing={6}>
+              {primaryProjects.map(project => (
+                <Box
+                  key={project.slug}
+                  borderWidth="1px"
+                  borderColor="line"
+                  borderRadius="28px"
+                  bg="paperElevated"
+                  overflow="hidden"
+                  boxShadow="card"
+                >
+                  <AspectRatio ratio={16 / 10} bg="surface">
+                    <Image
+                      src={project.thumbnail.src}
+                      alt={project.title}
+                      w="100%"
+                      h="100%"
+                      objectFit="cover"
+                    />
+                  </AspectRatio>
+
+                  <Stack spacing={4} p={{ base: 5, md: 6 }}>
+                    <Text textStyle="micro" color="accent">
+                      {project.category}
+                    </Text>
+                    <Heading as="h3" size="md">
+                      <Link as={NextLink} href={`/works/${project.slug}`}>
+                        {project.title}
+                      </Link>
+                    </Heading>
+                    <Text color="muted">{project.summary}</Text>
+                    <Button
+                      as={NextLink}
+                      href={`/works/${project.slug}`}
+                      variant="ghost"
+                      rightIcon={<ArrowForwardIcon />}
+                      alignSelf="flex-start"
+                      px={0}
+                    >
+                      Open case study
+                    </Button>
+                  </Stack>
+                </Box>
+              ))}
+            </SimpleGrid>
+          </Stack>
+        </Section>
+
+        <Section mb={0}>
+          <Box borderTopWidth="1px" borderColor="line" pt={8}>
+            <Text textStyle="eyebrow" color="accent" mb={3}>
+              Experiments
+            </Text>
+            <Heading as="h2" variant="section-title">
+              Earlier projects that sharpened the craft.
+            </Heading>
+            <SimpleGrid columns={{ base: 1, md: 3 }} spacing={5}>
+              {experimentalProjects.map(project => (
+                <Box
+                  key={project.slug}
+                  borderWidth="1px"
+                  borderColor="line"
+                  borderRadius="24px"
+                  bg="paperElevated"
+                  overflow="hidden"
+                >
+                  <AspectRatio ratio={16 / 10} bg="surface">
+                    <Image
+                      src={project.thumbnail.src}
+                      alt={project.title}
+                      w="100%"
+                      h="100%"
+                      objectFit="cover"
+                    />
+                  </AspectRatio>
+                  <Stack spacing={3} p={5}>
+                    <Text textStyle="micro" color="accent">
+                      {project.year}
+                    </Text>
+                    <Heading as="h3" size="sm">
+                      {project.title}
+                    </Heading>
+                    <Text color="muted">{project.intro}</Text>
+                    <Link
+                      as={NextLink}
+                      href={`/works/${project.slug}`}
+                      fontWeight="600"
+                      color="accentStrong"
+                    >
+                      Read more
+                    </Link>
+                  </Stack>
+                </Box>
+              ))}
+            </SimpleGrid>
+          </Box>
+        </Section>
+      </Stack>
     </Layout>
   )
 }

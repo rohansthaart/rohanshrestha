@@ -2,44 +2,56 @@ import NextLink from 'next/link'
 import NextImage from 'next/image'
 import { useEffect, useMemo, useState } from 'react'
 import {
-  Box,
-  Center,
-  Text,
+  AspectRatio,
   Badge,
-  HStack,
-  VStack,
+  Box,
   Button,
-  Tabs,
-  TabList,
-  Tab,
-  TabPanels,
-  TabPanel,
+  Center,
+  HStack,
+  LinkBox,
+  LinkOverlay,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
   ModalHeader,
   ModalOverlay,
-  useDisclosure,
-  LinkBox,
-  LinkOverlay,
-  useColorModeValue
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Text,
+  VStack,
+  useDisclosure
 } from '@chakra-ui/react'
 import { Global } from '@emotion/react'
 
-export const GridItem = ({ children, href, title, thumbnail }) => (
+const cardTransition =
+  'transform 180ms cubic-bezier(0.23, 1, 0.32, 1), box-shadow 180ms cubic-bezier(0.23, 1, 0.32, 1), border-color 180ms cubic-bezier(0.23, 1, 0.32, 1)'
+
+const SurfaceCard = ({ children, ...props }) => (
   <Box
     w="100%"
-    textAlign="center"
-    borderRadius="card"
-    bg={useColorModeValue('whiteAlpha.700', 'whiteAlpha.100')}
-    p={3}
+    borderRadius="24px"
+    bg="paperElevated"
     borderWidth="1px"
-    borderColor={useColorModeValue('blackAlpha.200', 'whiteAlpha.300')}
-    boxShadow={useColorModeValue('card', 'cardDark')}
-    transition="all 0.2s ease"
-    _hover={{ transform: 'translateY(-4px)', boxShadow: useColorModeValue('cardHover', 'cardHoverDark') }}
+    borderColor="line"
+    boxShadow="card"
+    transition={cardTransition}
+    _hover={{
+      transform: 'translateY(-2px)',
+      boxShadow: 'lift',
+      borderColor: 'accent'
+    }}
+    {...props}
   >
+    {children}
+  </Box>
+)
+
+export const GridItem = ({ children, href, title, thumbnail }) => (
+  <SurfaceCard p={3}>
     <LinkBox cursor="pointer">
       <NextImage
         src={thumbnail}
@@ -50,38 +62,20 @@ export const GridItem = ({ children, href, title, thumbnail }) => (
         style={{ maxWidth: '100%', height: 'auto', objectFit: 'cover' }}
       />
       <LinkOverlay href={href} target="_blank">
-        <Text mt={2}>{title}</Text>
+        <Text mt={3} fontWeight="700">
+          {title}
+        </Text>
       </LinkOverlay>
-      <Text fontSize={14}>{children}</Text>
+      <Text fontSize="sm" color="muted">
+        {children}
+      </Text>
     </LinkBox>
-  </Box>
+  </SurfaceCard>
 )
 
-export const WorkGridItem = ({
-  children,
-  category = 'works',
-  id,
-  title,
-  thumbnail
-}) => (
-  <Box
-    w="100%"
-    textAlign="center"
-    borderRadius="card"
-    bg={useColorModeValue('whiteAlpha.700', 'whiteAlpha.100')}
-    p={3}
-    borderWidth="1px"
-    borderColor={useColorModeValue('blackAlpha.200', 'whiteAlpha.300')}
-    boxShadow={useColorModeValue('card', 'cardDark')}
-    transition="all 0.2s ease"
-    _hover={{ transform: 'translateY(-4px)', boxShadow: useColorModeValue('cardHover', 'cardHoverDark') }}
-  >
-    <LinkBox
-      as={NextLink}
-      href={`/${category}/${id}`}
-      scroll={false}
-      cursor="pointer"
-    >
+export const WorkGridItem = ({ children, category = 'works', id, title, thumbnail }) => (
+  <SurfaceCard p={3}>
+    <LinkBox as={NextLink} href={`/${category}/${id}`} scroll={false} cursor="pointer">
       <NextImage
         src={thumbnail}
         alt={title}
@@ -89,36 +83,24 @@ export const WorkGridItem = ({
         placeholder="blur"
       />
       <LinkOverlay as="div" href={`/${category}/${id}`}>
-        <Text mt={2} fontSize={22} fontWeight="bold">
+        <Text mt={3} fontSize="xl" fontWeight="700" letterSpacing="-0.03em">
           {title}
         </Text>
       </LinkOverlay>
-      <Text fontSize={14} mt={1} color={useColorModeValue('gray.700', 'gray.300')}>
+      <Text fontSize="sm" mt={2} color="muted">
         {children}
       </Text>
     </LinkBox>
-  </Box>
+  </SurfaceCard>
 )
 
 export const ArtGridItem = ({ id, title, thumbnail, children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const modalBg = useColorModeValue('white', 'gray.800')
 
   return (
     <>
-      <Box
-        w="100%"
-        textAlign="center"
-        borderRadius="card"
-        bg={useColorModeValue('whiteAlpha.700', 'whiteAlpha.100')}
-        p={3}
-        borderWidth="1px"
-        borderColor={useColorModeValue('blackAlpha.200', 'whiteAlpha.300')}
-        boxShadow={useColorModeValue('card', 'cardDark')}
-        transition="all 0.2s ease"
-        _hover={{ transform: 'translateY(-4px)', boxShadow: useColorModeValue('cardHover', 'cardHoverDark') }}
-      >
-        <VStack align="stretch" spacing={3}>
+      <SurfaceCard p={3}>
+        <VStack align="stretch" spacing={4}>
           <Box
             cursor="zoom-in"
             onClick={onOpen}
@@ -131,47 +113,47 @@ export const ArtGridItem = ({ id, title, thumbnail, children }) => {
               }
             }}
           >
-            <NextImage
-              src={thumbnail}
-              alt={title}
-              className="grid-item-thumbnail"
-              placeholder="blur"
-            />
+            <AspectRatio ratio={4 / 3} bg="surface" borderRadius="18px" overflow="hidden">
+              <NextImage
+                src={thumbnail}
+                alt={title}
+                className="grid-item-thumbnail"
+                placeholder="blur"
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </AspectRatio>
           </Box>
 
-          <Text fontSize={22} fontWeight="bold">
-            {title}
-          </Text>
-
-          <Text fontSize={14} color={useColorModeValue('gray.700', 'gray.300')}>
-            {children}
-          </Text>
+          <Box>
+            <Text textStyle="micro" color="accent" mb={2}>
+              Collection
+            </Text>
+            <Text fontSize="xl" fontWeight="700" letterSpacing="-0.03em" mb={2}>
+              {title}
+            </Text>
+            <Text fontSize="sm" color="muted">
+              {children}
+            </Text>
+          </Box>
 
           <HStack justify="space-between">
-            <Button
-              size="sm"
-              variant="ghost"
-              onClick={event => {
-                event.stopPropagation()
-                onOpen()
-              }}
-            >
-              Expand Preview
+            <Button size="sm" variant="ghost" onClick={onOpen}>
+              Expand
             </Button>
-            <Button as={NextLink} href={`/arts/${id}`} size="sm" variant="subtle">
-              View Collection
+            <Button as={NextLink} href={`/arts/${id}`} size="sm" variant="outline">
+              Open collection
             </Button>
           </HStack>
         </VStack>
-      </Box>
+      </SurfaceCard>
 
       <Modal isOpen={isOpen} onClose={onClose} size="4xl" isCentered>
-        <ModalOverlay />
-        <ModalContent bg={modalBg}>
+        <ModalOverlay bg="rgba(23, 25, 28, 0.38)" />
+        <ModalContent>
           <ModalHeader>{title}</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
-            <Box borderRadius="lg" overflow="hidden">
+            <Box borderRadius="20px" overflow="hidden">
               <NextImage
                 src={thumbnail}
                 alt={`${title} expanded preview`}
@@ -213,63 +195,48 @@ export const GraphicsGridItem = ({
       return
     }
 
-    if (tabImages.length > 0) {
-      setSelectedImage(tabImages[0])
-    } else {
-      setSelectedImage(null)
-    }
-  }, [isOpen, tabIndex, tabImages])
-
-  const cardBg = useColorModeValue('whiteAlpha.700', 'whiteAlpha.100')
-  const cardShadow = useColorModeValue('card', 'cardDark')
-  const cardShadowHover = useColorModeValue('cardHover', 'cardHoverDark')
-  const modalBg = useColorModeValue('white', 'gray.800')
-  const panelBg = useColorModeValue('blackAlpha.50', 'whiteAlpha.100')
-  const previewBg = useColorModeValue('gray.100', 'blackAlpha.500')
-  const pickerBg = useColorModeValue('whiteAlpha.700', 'whiteAlpha.100')
-  const softBorderColor = useColorModeValue('blackAlpha.200', 'whiteAlpha.300')
-  const selectedThumbBorder = useColorModeValue('teal.500', 'teal.200')
-  const mutedTextColor = useColorModeValue('gray.600', 'gray.300')
+    setSelectedImage(tabImages[0] ?? null)
+  }, [isOpen, tabImages])
 
   const renderGalleryPanel = (images, emptyStateText, previewLabel) => (
-    <VStack align="stretch" spacing={3} h="100%" minH={0} overflow="hidden">
+    <VStack align="stretch" spacing={4} h="100%" minH={0}>
       <Box
         flex="1 1 0%"
-        minH={0}
-        borderRadius="lg"
+        minH="360px"
+        borderRadius="20px"
         overflow="hidden"
-        bg={panelBg}
+        bg="surface"
         borderWidth="1px"
-        borderColor={softBorderColor}
+        borderColor="line"
         p={3}
       >
         {selectedImage ? (
-          <VStack align="stretch" spacing={2} h="100%">
+          <VStack align="stretch" spacing={3} h="100%">
             <Box
               position="relative"
               flex="1"
               minH={0}
-              borderRadius="md"
+              borderRadius="16px"
               overflow="hidden"
-              bg={previewBg}
+              bg="paper"
             >
               <NextImage
                 src={selectedImage.src}
                 alt={selectedImage.alt || `${title} ${previewLabel} preview`}
                 fill
-                sizes="(max-width: 768px) 95vw, 85vw"
+                sizes="(max-width: 768px) 95vw, 80vw"
                 style={{ objectFit: 'contain' }}
               />
             </Box>
             {selectedImage.caption ? (
-              <Text fontSize={13} color={mutedTextColor} noOfLines={2}>
+              <Text fontSize="sm" color="muted">
                 {selectedImage.caption}
               </Text>
             ) : null}
           </VStack>
         ) : (
           <Center h="100%">
-            <Text fontSize={14} color={mutedTextColor}>
+            <Text fontSize="sm" color="muted">
               {emptyStateText}
             </Text>
           </Center>
@@ -277,19 +244,15 @@ export const GraphicsGridItem = ({
       </Box>
 
       <Box
-        flex="0 0 20%"
-        minH={['84px', '96px', '112px']}
-        maxH={['112px', '128px', '144px']}
-        borderRadius="md"
+        borderRadius="18px"
         borderWidth="1px"
-        borderColor={softBorderColor}
-        bg={pickerBg}
+        borderColor="line"
+        bg="paper"
         p={2}
         overflowX="auto"
-        overflowY="hidden"
       >
         {images.length > 0 ? (
-          <HStack align="stretch" spacing={2} h="100%" minW="max-content" pr={1}>
+          <HStack align="stretch" spacing={2} minW="max-content">
             {images.map((image, imageIndex) => {
               const isActive = selectedImage?.src === image.src
 
@@ -297,46 +260,35 @@ export const GraphicsGridItem = ({
                 <Button
                   key={`${title}-${previewLabel}-${imageIndex}`}
                   variant="unstyled"
-                  height="100%"
-                  minW={['84px', '96px', '112px']}
+                  h="96px"
+                  minW="112px"
                   p={0}
                   onClick={() => setSelectedImage(image)}
-                  textAlign="left"
                 >
-                  <VStack
-                    align="stretch"
-                    spacing={1}
+                  <Box
                     h="100%"
-                    borderRadius="md"
+                    borderRadius="14px"
                     borderWidth="1px"
-                    borderColor={isActive ? selectedThumbBorder : softBorderColor}
-                    p={1}
-                    transition="all 0.2s ease"
+                    borderColor={isActive ? 'accent' : 'line'}
+                    overflow="hidden"
+                    position="relative"
+                    bg="paperElevated"
                   >
-                    <Box
-                      flex="1"
-                      minH={0}
-                      borderRadius="sm"
-                      overflow="hidden"
-                      position="relative"
-                      bg={previewBg}
-                    >
-                      <NextImage
-                        src={image.src}
-                        alt={image.alt || `${title} ${previewLabel} thumbnail ${imageIndex + 1}`}
-                        fill
-                        sizes="(max-width: 768px) 30vw, 12vw"
-                        style={{ objectFit: 'contain' }}
-                      />
-                    </Box>
-                  </VStack>
+                    <NextImage
+                      src={image.src}
+                      alt={image.alt || `${title} ${previewLabel} thumbnail ${imageIndex + 1}`}
+                      fill
+                      sizes="160px"
+                      style={{ objectFit: 'contain' }}
+                    />
+                  </Box>
                 </Button>
               )
             })}
           </HStack>
         ) : (
-          <Center h="100%">
-            <Text fontSize={13} color={mutedTextColor}>
+          <Center py={5}>
+            <Text fontSize="sm" color="muted">
               {emptyStateText}
             </Text>
           </Center>
@@ -347,17 +299,9 @@ export const GraphicsGridItem = ({
 
   return (
     <>
-      <Box
-        w="100%"
-        borderRadius="lg"
-        p={3}
-        bg={cardBg}
-        borderWidth="1px"
-        borderColor={softBorderColor}
-        boxShadow={cardShadow}
+      <SurfaceCard
+        p={4}
         cursor="zoom-in"
-        transition="all 0.2s ease"
-        _hover={{ transform: 'translateY(-5px)', boxShadow: cardShadowHover }}
         onClick={onOpen}
         role="button"
         tabIndex={0}
@@ -368,86 +312,78 @@ export const GraphicsGridItem = ({
           }
         }}
       >
-        <VStack align="stretch" spacing={3}>
-          <Box>
-            <NextImage
-              src={thumbnail}
-              alt={title}
-              className="grid-item-thumbnail"
-              placeholder="blur"
-            />
+        <VStack align="stretch" spacing={4}>
+          <Box borderRadius="18px" overflow="hidden" bg="surface">
+            <AspectRatio ratio={4 / 3}>
+              <NextImage
+                src={thumbnail}
+                alt={title}
+                className="grid-item-thumbnail"
+                placeholder="blur"
+                style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '12px' }}
+              />
+            </AspectRatio>
           </Box>
 
-          <Text fontSize={20} fontWeight="bold">
-            {title}
-          </Text>
-
-          <HStack spacing={2} flexWrap="wrap">
-            <Badge colorScheme="teal" variant="subtle">
-              {category}
-            </Badge>
-            <Badge colorScheme="green" variant="subtle">
-              {client}
-            </Badge>
-          </HStack>
-
-          <HStack spacing={3} align="center">
-            <Box borderRadius="md" overflow="hidden" boxSize="44px" bg="white">
-              <NextImage
-                src={clientLogo}
-                alt={`${client} logo`}
-                width={44}
-                height={44}
-                style={{ objectFit: 'contain' }}
-              />
-            </Box>
-            <Text fontSize={13} color={mutedTextColor}>
-              Client Logo
-            </Text>
-          </HStack>
-
-          <Text fontSize={14} color={useColorModeValue('gray.700', 'gray.300')}>
-            {description}
-          </Text>
-
-          <HStack spacing={2} flexWrap="wrap">
-            {tools.map((tool) => (
-              <Badge key={tool} variant="outline" colorScheme="gray">
-                {tool}
+          <VStack align="stretch" spacing={3}>
+            <HStack spacing={2} flexWrap="wrap">
+              <Badge bg="accentMuted" color="accentStrong">
+                {category}
               </Badge>
-            ))}
-          </HStack>
+              <Badge borderWidth="1px" borderColor="line" color="muted" bg="transparent">
+                {client}
+              </Badge>
+            </HStack>
 
-          <Button
-            size="sm"
-            variant="ghost"
-            alignSelf="flex-start"
-            onClick={event => {
-              event.stopPropagation()
-              onOpen()
-            }}
-          >
-            Expand Preview
-          </Button>
+            <Text fontSize="xl" fontWeight="700" letterSpacing="-0.03em">
+              {title}
+            </Text>
+
+            <Text fontSize="sm" color="muted">
+              {description}
+            </Text>
+
+            <HStack spacing={3} align="center">
+              <Box borderRadius="12px" overflow="hidden" boxSize="44px" bg="paper">
+                <NextImage
+                  src={clientLogo}
+                  alt={`${client} logo`}
+                  width={44}
+                  height={44}
+                  style={{ objectFit: 'contain' }}
+                />
+              </Box>
+              <Text fontSize="sm" color="muted">
+                Client application and brand context
+              </Text>
+            </HStack>
+
+            <HStack spacing={2} flexWrap="wrap">
+              {tools.map(tool => (
+                <Badge key={tool} borderWidth="1px" borderColor="line" bg="transparent" color="muted">
+                  {tool}
+                </Badge>
+              ))}
+            </HStack>
+          </VStack>
         </VStack>
-      </Box>
+      </SurfaceCard>
 
       <Modal isOpen={isOpen} onClose={onClose} size="6xl" isCentered>
-        <ModalOverlay />
-        <ModalContent bg={modalBg} maxW={['95vw', '92vw', '88vw']} h={['90vh', '88vh', '86vh']}>
+        <ModalOverlay bg="rgba(23, 25, 28, 0.38)" />
+        <ModalContent maxW={['95vw', '92vw', '86vw']} h={['90vh', '88vh', '86vh']}>
           <ModalHeader>{title}</ModalHeader>
           <ModalCloseButton />
-          <ModalBody pb={4} overflow="hidden">
-            <VStack align="stretch" spacing={4} h="100%" minH={0}>
-              <Text fontSize={14} color={mutedTextColor}>
+          <ModalBody pb={5} overflow="hidden">
+            <VStack align="stretch" spacing={5} h="100%">
+              <Text fontSize="sm" color="muted">
                 {storyText || 'From concept to real-world use.'}
               </Text>
 
               <Tabs
                 index={tabIndex}
-                onChange={(nextIndex) => setTabIndex(nextIndex)}
-                colorScheme="teal"
-                variant="soft-rounded"
+                onChange={nextIndex => setTabIndex(nextIndex)}
+                variant="line"
                 display="flex"
                 flexDirection="column"
                 flex="1"
@@ -455,27 +391,18 @@ export const GraphicsGridItem = ({
               >
                 <TabList>
                   <Tab>Design ({designImages.length})</Tab>
-                  <Tab>Real-World ({realWorldImages.length})</Tab>
+                  <Tab>Real-world ({realWorldImages.length})</Tab>
                 </TabList>
 
                 <TabPanels flex="1" minH={0} overflow="hidden">
-                  <TabPanel p={0} pt={3} h="100%" minH={0} overflow="hidden">
+                  <TabPanel p={0} pt={4} h="100%" minH={0}>
                     {renderGalleryPanel(designImages, 'No design images added yet.', 'design')}
                   </TabPanel>
-
-                  <TabPanel p={0} pt={3} h="100%" minH={0} overflow="hidden">
+                  <TabPanel p={0} pt={4} h="100%" minH={0}>
                     {renderGalleryPanel(realWorldImages, 'No real-world photos available yet.', 'real-world')}
                   </TabPanel>
                 </TabPanels>
               </Tabs>
-
-              {!selectedImage && designImages.length === 0 && realWorldImages.length === 0 ? (
-                <Box borderRadius="md" bg={panelBg} p={3}>
-                  <Text fontSize={14} color={mutedTextColor}>
-                    Gallery items are being organized for this project.
-                  </Text>
-                </Box>
-              ) : null}
             </VStack>
           </ModalBody>
         </ModalContent>
@@ -484,12 +411,13 @@ export const GraphicsGridItem = ({
   )
 }
 
-
 export const GridItemStyle = () => (
   <Global
     styles={`
       .grid-item-thumbnail {
-        border-radius: 12px;
+        width: 100%;
+        height: auto;
+        border-radius: 18px;
       }
     `}
   />

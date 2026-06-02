@@ -1,64 +1,30 @@
 import Head from 'next/head'
-import dynamic from 'next/dynamic'
-import NavBar from '../navbar'
 import { Box, Container } from '@chakra-ui/react'
+import NavBar from '../navbar'
 import Footer from '../footer'
-import VoxelDogLoader from '../voxel-dog-loader'
-
-const LazyVoxelDog = dynamic(() => import('../voxel-dog'), {
-  ssr: false,
-  loading: () => <VoxelDogLoader />
-})
 
 const Main = ({ children, router }) => {
   return (
-    <Box as="main" pb={10} position="relative" overflowX="clip" overflowY="auto">
+    <Box as="main" minH="100vh">
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="Rohan's homepage" />
-        <meta name="author" content="Rohan Shrestha" />
-        <link
-          rel="shortcut icon"
-          href="/images/logo-dark.png"
-          type="image/x-icon"
+        <meta
+          name="description"
+          content="Portfolio of Rohan Shrestha, a full-stack developer and visual designer based in Kathmandu."
         />
-        <title>Rohan Shrestha - Portfolio</title>
+        <meta name="author" content="Rohan Shrestha" />
+        <link rel="shortcut icon" href="/images/logo-dark.png" type="image/x-icon" />
+        <title>Rohan Shrestha | Portfolio</title>
       </Head>
 
       <NavBar path={router.asPath} />
 
-      <Box
-        position="absolute"
-        top={{ base: -80, md: -120 }}
-        left={{ base: -110, md: -160 }}
-        w={{ base: '280px', md: '420px' }}
-        h={{ base: '280px', md: '420px' }}
-        bg="rgba(136, 204, 202, 0.22)"
-        borderRadius="full"
-        filter="blur(80px)"
-        pointerEvents="none"
-        zIndex={0}
-        maxW="100vw"
-      />
-      <Box
-        position="absolute"
-        top={{ base: 140, md: 180 }}
-        right={{ base: -130, md: -180 }}
-        w={{ base: '320px', md: '460px' }}
-        h={{ base: '320px', md: '460px' }}
-        bg="rgba(94, 113, 255, 0.18)"
-        borderRadius="full"
-        filter="blur(95px)"
-        pointerEvents="none"
-        zIndex={0}
-        maxW="100vw"
-      />
-
-      <Container maxW="container.md" pt={{ base: 20, md: 24 }} position="relative" zIndex={1} w="full" overflowX="visible">
-        <LazyVoxelDog />
-
+      <Container
+        maxW="1160px"
+        pt={{ base: 28, md: 32 }}
+        pb={{ base: 16, md: 20 }}
+      >
         {children}
-
         <Footer />
       </Container>
     </Box>

@@ -1,49 +1,45 @@
-import { Box, Container, Heading, SimpleGrid, useColorModeValue } from '@chakra-ui/react'
-
-import sketch from '../../public/images/arts/sketch_1.jpg'
-import painting from '../../public/images/arts/painting_1.jpg'
+import { Heading, SimpleGrid, Stack, Text } from '@chakra-ui/react'
 import { ArtGridItem } from '../../components/grid-item'
-import Section from '../../components/section'
 import Layout from '../../components/layouts/article'
+import Section from '../../components/section'
+import { artCollections } from '../../lib/content'
 
 const Arts = () => {
-  const introBg = useColorModeValue('whiteAlpha.700', 'whiteAlpha.200')
-  const introBorder = useColorModeValue('blackAlpha.200', 'whiteAlpha.300')
-
   return (
     <Layout title="Arts Collection">
-      <Container>
-        <Heading as="h3" fontSize={24} mb={4}>
-          Rohan&apos;s arts
-        </Heading>
+      <Stack spacing={{ base: 12, md: 16 }}>
+        <Section mb={0}>
+          <Stack spacing={5} maxW="860px">
+            <Text textStyle="eyebrow" color="accent">
+              Arts
+            </Text>
+            <Heading as="h1" variant="page-title" maxW={{ base: '10ch', md: '13ch' }}>
+              Personal work that keeps the eye honest.
+            </Heading>
+            <Text color="muted" fontSize={{ base: 'lg', md: 'xl' }} maxW="56ch">
+              Drawing and painting are part of how I keep observing, composing, and paying
+              attention to detail outside of software.
+            </Text>
+          </Stack>
+        </Section>
 
-        <Box
-          my={4}
-          p={4}
-          borderRadius="xl"
-          borderWidth="1px"
-          borderColor={introBorder}
-          bg={introBg}
-          boxShadow={useColorModeValue('card', 'cardDark')}
-        >
-          Drawing and painting explorations from my personal art journey.
-          These works focus on emotion, detail, and visual storytelling.
-        </Box>
-
-        <Section>
-          <SimpleGrid columns={[1, 2, 2]} gap={6}>
-            <ArtGridItem id="sketch" title="Sketch" thumbnail={sketch}>
-              Graphite and pen-based drawing studies with expressive detailing.
-            </ArtGridItem>
-            <ArtGridItem id="painting" title="Painting" thumbnail={painting}>
-              Color-rich painting works focused on mood, contrast, and texture.
-            </ArtGridItem>
+        <Section mb={0}>
+          <SimpleGrid columns={{ base: 1, md: 2 }} gap={6}>
+            {artCollections.map(collection => (
+              <ArtGridItem
+                key={collection.slug}
+                id={collection.slug}
+                title={collection.title}
+                thumbnail={collection.thumbnail}
+              >
+                {collection.intro}
+              </ArtGridItem>
+            ))}
           </SimpleGrid>
         </Section>
-      </Container>
+      </Stack>
     </Layout>
   )
 }
 
 export default Arts
-// export { getServerSideProps } from '../../components/chakra'

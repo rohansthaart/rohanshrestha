@@ -3,32 +3,30 @@ import Head from 'next/head'
 import { GridItemStyle } from '../grid-item'
 
 const variants = {
-  hidden: { opacity: 0, x: 0, y: 20 },
-  enter: { opacity: 1, x: 0, y: 0 },
-  exit: { opacity: 0, x: -0, y: 20 }
+  hidden: { opacity: 0, y: 18 },
+  enter: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: 12 }
 }
 
 const Layout = ({ children, title }) => {
-  const t = `${title} - Rohan Shrestha`
+  const pageTitle = title ? `${title} | Rohan Shrestha` : 'Rohan Shrestha | Portfolio'
+
   return (
     <motion.article
-      initial="hidden"
+      initial={false}
       animate="enter"
       exit="exit"
       variants={variants}
-      transition={{ duration: 0.4, type: 'easeInOut' }}
+      transition={{ duration: 0.22, ease: [0.23, 1, 0.32, 1] }}
       style={{ position: 'relative' }}
     >
       <>
-        {title && (
-          <Head>
-            <title>{t}</title>
-            <meta name="twitter:title" content={t} />
-            <meta property="og:title" content={t} />
-          </Head>
-        )}
+        <Head>
+          <title>{pageTitle}</title>
+          <meta name="twitter:title" content={pageTitle} />
+          <meta property="og:title" content={pageTitle} />
+        </Head>
         {children}
-
         <GridItemStyle />
       </>
     </motion.article>
