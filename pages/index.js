@@ -184,14 +184,13 @@ const Home = () => {
                 <Text textStyle="eyebrow" color="accent">
                   Hybrid Builder Portfolio
                 </Text>
-                <Heading as="h1" variant="page-title" maxW={{ base: '11ch', lg: '9ch' }}>
+                <Heading as="h1" variant="page-title" maxW={   'full' }>
                   Full-stack delivery with a sharper eye for interface quality.
                 </Heading>
                 <Text
-                  fontSize={{ base: 'lg', md: '2xl' }}
+                  fontSize={{ base: 'lg', md: 'full' }}
                   lineHeight={1.35}
                   letterSpacing="-0.02em"
-                  maxW="24ch"
                 >
                   I help teams ship products that are technically dependable, visually clear, and ready for real users.
                 </Text>

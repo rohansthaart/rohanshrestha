@@ -13,10 +13,10 @@ const Arts = () => {
             <Text textStyle="eyebrow" color="accent">
               Arts
             </Text>
-            <Heading as="h1" variant="page-title" maxW={{ base: '10ch', md: '13ch' }}>
+            <Heading as="h1" variant="page-title" maxW={'full'}>
               Personal work that keeps the eye honest.
             </Heading>
-            <Text color="muted" fontSize={{ base: 'lg', md: 'xl' }} maxW="56ch">
+            <Text color="muted" fontSize={{ base: 'lg', md: 'xl' }} width="100%">
               Drawing and painting are part of how I keep observing, composing, and paying
               attention to detail outside of software.
             </Text>

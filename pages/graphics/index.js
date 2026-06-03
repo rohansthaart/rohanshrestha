@@ -13,10 +13,10 @@ const Graphics = () => {
             <Text textStyle="eyebrow" color="accent">
               Graphics
             </Text>
-            <Heading as="h1" variant="page-title" maxW={{ base: '11ch', md: '13ch' }}>
+            <Heading as="h1" variant="page-title" maxW={'full'}>
               Supporting visual work for brands and campaigns.
             </Heading>
-            <Text color="muted" fontSize={{ base: 'lg', md: 'xl' }} maxW="56ch">
+            <Text color="muted" fontSize={{ base: 'lg', md: 'xl' }} width="100%">
               These pieces sit behind the product work rather than competing with it: print
               collateral, campaign graphics, identity assets, and social formats that help
               brands feel more complete across channels.

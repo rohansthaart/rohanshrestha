@@ -31,10 +31,10 @@ const Works = () => {
             <Text textStyle="eyebrow" color="accent">
               Projects
             </Text>
-            <Heading as="h1" variant="page-title" maxW={{ base: '10ch', md: '12ch' }}>
+            <Heading as="h1" variant="page-title" maxW={'full'}>
               Product and website work built to ship.
             </Heading>
-            <Text color="muted" fontSize={{ base: 'lg', md: 'xl' }} maxW="56ch">
+            <Text color="muted" fontSize={{ base: 'lg', md: 'xl' }} width="100%">
               A selection of full-stack products, public websites, and operational platforms.
               The through-line is ownership: carrying ideas into working interfaces and
               production-ready delivery.
