@@ -181,9 +181,7 @@ const Home = () => {
           >
             <GridItem>
               <Stack spacing={6}>
-                <Text textStyle="eyebrow" color="accent">
-                  Hybrid Builder Portfolio
-                </Text>
+          
                 <Heading as="h1" variant="page-title" maxW={   'full' }>
                   Full-stack delivery with a sharper eye for interface quality.
                 </Heading>

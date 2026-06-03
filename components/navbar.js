@@ -101,9 +101,9 @@ const Navbar = ({ path }) => {
                 variant="outline"
                 borderColor="line"
               />
-              <MenuList>
+              <MenuList bg="paperElevated" borderColor="line">
                 {navItems.map(item => (
-                  <MenuItem key={item.href} as={MenuLink} href={item.href}>
+                  <MenuItem key={item.href} as={MenuLink} href={item.href} color="ink" _hover={{ bg: 'surface' }}>
                     {item.label}
                   </MenuItem>
                 ))}
