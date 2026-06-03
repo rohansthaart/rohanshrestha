@@ -1,18 +1,35 @@
 import NextLink from 'next/link'
 import {
-  Badge,
   Box,
   Button,
   Grid,
   GridItem,
   Heading,
+  Icon,
   Image,
   Link,
   SimpleGrid,
   Stack,
-  Text
+  Text,
+  Wrap,
+  WrapItem
 } from '@chakra-ui/react'
 import { ArrowForwardIcon } from '@chakra-ui/icons'
+import {
+  SiChakraui,
+  SiDocker,
+  SiExpress,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiPostgresql,
+  SiPrisma,
+  SiReact,
+  SiReactquery,
+  SiTailwindcss,
+  SiTypescript,
+  SiVitest,
+  SiZod
+} from 'react-icons/si'
 import Layout from '../components/layouts/article'
 import Section from '../components/section'
 import {
@@ -20,8 +37,80 @@ import {
   featuredProjects,
   graphicsProjects,
   primaryProjects,
-  technicalSkills
+  technicalSkillGroups
 } from '../lib/content'
+
+const skillIcons = {
+  chakraui: SiChakraui,
+  docker: SiDocker,
+  express: SiExpress,
+  nextdotjs: SiNextdotjs,
+  nodedotjs: SiNodedotjs,
+  postgresql: SiPostgresql,
+  prisma: SiPrisma,
+  react: SiReact,
+  reactquery: SiReactquery,
+  tailwindcss: SiTailwindcss,
+  typescript: SiTypescript,
+  vitest: SiVitest,
+  zod: SiZod
+}
+
+const SkillChip = ({ icon, label }) => {
+  const SkillIcon = skillIcons[icon]
+
+  return (
+    <WrapItem>
+      <Box
+        as="span"
+        display="inline-flex"
+        alignItems="center"
+        gap={2.5}
+        px={3}
+        py={2}
+        borderRadius="full"
+        borderWidth="1px"
+        borderColor="line"
+        bg="paper"
+        color="ink"
+        fontSize="sm"
+        fontWeight="600"
+        letterSpacing="-0.01em"
+      >
+        <Icon as={SkillIcon} boxSize={4} color="accentStrong" flexShrink={0} />
+        <Text as="span" color="inherit">
+          {label}
+        </Text>
+      </Box>
+    </WrapItem>
+  )
+}
+
+const SkillGroupRow = ({ group, index }) => (
+  <Box py={{ base: 5, md: 6 }} borderTopWidth={index === 0 ? '0' : '1px'} borderColor="line">
+    <Grid templateColumns={{ base: '1fr', md: '180px minmax(0, 1fr)' }} gap={{ base: 4, md: 6 }}>
+      <Stack spacing={2}>
+        <Text textStyle="micro" color="accent">
+          {String(index + 1).padStart(2, '0')}
+        </Text>
+        <Box>
+          <Text fontFamily="heading" fontSize={{ base: 'xl', md: '2xl' }} letterSpacing="-0.04em" mb={2}>
+            {group.title}
+          </Text>
+          <Text color="muted" fontSize="sm" maxW="26ch">
+            {group.description}
+          </Text>
+        </Box>
+      </Stack>
+
+      <Wrap spacing={3}>
+        {group.items.map(skill => (
+          <SkillChip key={skill.name} icon={skill.icon} label={skill.name} />
+        ))}
+      </Wrap>
+    </Grid>
+  </Box>
+)
 
 const timelineItems = [
   {
@@ -209,24 +298,38 @@ const Home = () => {
             <Box
               borderWidth="1px"
               borderColor="line"
-              borderRadius="24px"
+              borderRadius="28px"
               bg="paperElevated"
-              p={{ base: 5, md: 6 }}
+              p={{ base: 5, md: 7 }}
             >
-              <Text textStyle="eyebrow" color="accent" mb={3}>
-                Technical Skills
-              </Text>
-              <Text color="muted" mb={4} maxW="62ch">
-                Strongest in product-facing frontend work, backend-connected delivery, and the
-                practical layers that help software feel ready for production.
-              </Text>
-              <Stack direction="row" spacing={2} flexWrap="wrap">
-                {technicalSkills.map(skill => (
-                  <Badge key={skill} bg="accentMuted" color="accentStrong">
-                    {skill}
-                  </Badge>
-                ))}
-              </Stack>
+              <Grid
+                templateColumns={{ base: '1fr', lg: 'minmax(0, 280px) minmax(0, 1fr)' }}
+                gap={{ base: 8, lg: 10 }}
+                alignItems="start"
+              >
+                <Stack spacing={4}>
+                  <Text textStyle="eyebrow" color="accent">
+                    Technical Skills
+                  </Text>
+                  <Heading as="h2" fontSize={{ base: '2xl', md: '3xl' }} lineHeight={1} maxW="10ch">
+                    Selected stack, not a laundry list.
+                  </Heading>
+                  <Text color="muted" maxW="30ch">
+                    The tools below are the ones I would be happy to reach for again on real
+                    product work, not every library I have touched once.
+                  </Text>
+                </Stack>
+
+                <Box>
+                  {technicalSkillGroups.map((group, index) => (
+                    <SkillGroupRow key={group.title} group={group} index={index} />
+                  ))}
+                  <Text color="muted" fontSize="sm" pt={5} borderTopWidth="1px" borderColor="line">
+                    Also comfortable with Git, REST API integration, Vite, Jest, MongoDB, and AWS
+                    EC2 when a project needs them.
+                  </Text>
+                </Box>
+              </Grid>
             </Box>
           </Stack>
         </Section>
