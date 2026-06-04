@@ -16,18 +16,27 @@ const Graphics = () => {
             <Heading as="h1" variant="page-title" maxW={'full'}>
               Supporting visual work for brands and campaigns.
             </Heading>
-            <Text color="muted" fontSize={{ base: 'lg', md: 'xl' }} width="100%">
-              These pieces sit behind the product work rather than competing with it: print
-              collateral, campaign graphics, identity assets, and social formats that help
-              brands feel more complete across channels.
+            <Text
+              color="muted"
+              fontSize={{ base: 'lg', md: 'xl' }}
+              width="100%"
+            >
+              These pieces sit behind the product work rather than competing
+              with it: print collateral, campaign graphics, identity assets, and
+              social formats that help brands feel more complete across
+              channels.
             </Text>
           </Stack>
         </Section>
 
         <Section mb={0}>
           <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={6}>
-            {graphicsProjects.map(project => (
-              <GraphicsGridItem key={project.id} {...project} />
+            {graphicsProjects.map((project, index) => (
+              <GraphicsGridItem
+                key={project.id}
+                priority={index < 2}
+                {...project}
+              />
             ))}
           </SimpleGrid>
         </Section>

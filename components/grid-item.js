@@ -59,6 +59,7 @@ export const GridItem = ({ children, href, title, thumbnail }) => (
         className="grid-item-thumbnail"
         placeholder="blur"
         loading="lazy"
+        sizes="(max-width: 48em) 100vw, 33vw"
         style={{ maxWidth: '100%', height: 'auto', objectFit: 'cover' }}
       />
       <LinkOverlay href={href} target="_blank">
@@ -73,14 +74,26 @@ export const GridItem = ({ children, href, title, thumbnail }) => (
   </SurfaceCard>
 )
 
-export const WorkGridItem = ({ children, category = 'works', id, title, thumbnail }) => (
+export const WorkGridItem = ({
+  children,
+  category = 'works',
+  id,
+  title,
+  thumbnail
+}) => (
   <SurfaceCard p={3}>
-    <LinkBox as={NextLink} href={`/${category}/${id}`} scroll={false} cursor="pointer">
+    <LinkBox
+      as={NextLink}
+      href={`/${category}/${id}`}
+      scroll={false}
+      cursor="pointer"
+    >
       <NextImage
         src={thumbnail}
         alt={title}
         className="grid-item-thumbnail"
         placeholder="blur"
+        sizes="(max-width: 48em) 100vw, 33vw"
       />
       <LinkOverlay as="div" href={`/${category}/${id}`}>
         <Text mt={3} fontSize="xl" fontWeight="700" letterSpacing="-0.03em">
@@ -94,7 +107,13 @@ export const WorkGridItem = ({ children, category = 'works', id, title, thumbnai
   </SurfaceCard>
 )
 
-export const ArtGridItem = ({ id, title, thumbnail, children }) => {
+export const ArtGridItem = ({
+  id,
+  title,
+  thumbnail,
+  children,
+  priority = false
+}) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
@@ -113,12 +132,19 @@ export const ArtGridItem = ({ id, title, thumbnail, children }) => {
               }
             }}
           >
-            <AspectRatio ratio={4 / 3} bg="surface" borderRadius="18px" overflow="hidden">
+            <AspectRatio
+              ratio={4 / 3}
+              bg="surface"
+              borderRadius="18px"
+              overflow="hidden"
+            >
               <NextImage
                 src={thumbnail}
                 alt={title}
                 className="grid-item-thumbnail"
                 placeholder="blur"
+                priority={priority}
+                sizes="(max-width: 48em) 100vw, 50vw"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             </AspectRatio>
@@ -140,7 +166,12 @@ export const ArtGridItem = ({ id, title, thumbnail, children }) => {
             <Button size="sm" variant="ghost" onClick={onOpen}>
               Expand
             </Button>
-            <Button as={NextLink} href={`/arts/${id}`} size="sm" variant="outline">
+            <Button
+              as={NextLink}
+              href={`/arts/${id}`}
+              size="sm"
+              variant="outline"
+            >
               Open collection
             </Button>
           </HStack>
@@ -148,7 +179,7 @@ export const ArtGridItem = ({ id, title, thumbnail, children }) => {
       </SurfaceCard>
 
       <Modal isOpen={isOpen} onClose={onClose} size="4xl" isCentered>
-        <ModalOverlay bg="rgba(23, 25, 28, 0.38)" />
+        <ModalOverlay bg="rgba(23, 25, 28, 0.5)" />
         <ModalContent>
           <ModalHeader>{title}</ModalHeader>
           <ModalCloseButton />
@@ -159,6 +190,7 @@ export const ArtGridItem = ({ id, title, thumbnail, children }) => {
                 alt={`${title} expanded preview`}
                 width={1200}
                 height={900}
+                sizes="(max-width: 48em) 92vw, 72vw"
                 style={{ width: '100%', height: 'auto' }}
               />
             </Box>
@@ -177,6 +209,7 @@ export const GraphicsGridItem = ({
   description,
   tools,
   thumbnail,
+  priority = false,
   storyText,
   gallery
 }) => {
@@ -276,7 +309,10 @@ export const GraphicsGridItem = ({
                   >
                     <NextImage
                       src={image.src}
-                      alt={image.alt || `${title} ${previewLabel} thumbnail ${imageIndex + 1}`}
+                      alt={
+                        image.alt ||
+                        `${title} ${previewLabel} thumbnail ${imageIndex + 1}`
+                      }
                       fill
                       sizes="160px"
                       style={{ objectFit: 'contain' }}
@@ -320,7 +356,14 @@ export const GraphicsGridItem = ({
                 alt={title}
                 className="grid-item-thumbnail"
                 placeholder="blur"
-                style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '12px' }}
+                priority={priority}
+                sizes="(max-width: 48em) 100vw, 50vw"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain',
+                  padding: '12px'
+                }}
               />
             </AspectRatio>
           </Box>
@@ -330,7 +373,12 @@ export const GraphicsGridItem = ({
               <Badge bg="accentMuted" color="accentStrong">
                 {category}
               </Badge>
-              <Badge borderWidth="1px" borderColor="line" color="muted" bg="transparent">
+              <Badge
+                borderWidth="1px"
+                borderColor="line"
+                color="muted"
+                bg="transparent"
+              >
                 {client}
               </Badge>
             </HStack>
@@ -344,12 +392,18 @@ export const GraphicsGridItem = ({
             </Text>
 
             <HStack spacing={3} align="center">
-              <Box borderRadius="12px" overflow="hidden" boxSize="44px" bg="paper">
+              <Box
+                borderRadius="12px"
+                overflow="hidden"
+                boxSize="44px"
+                bg="paper"
+              >
                 <NextImage
                   src={clientLogo}
                   alt={`${client} logo`}
                   width={44}
                   height={44}
+                  sizes="44px"
                   style={{ objectFit: 'contain' }}
                 />
               </Box>
@@ -360,7 +414,13 @@ export const GraphicsGridItem = ({
 
             <HStack spacing={2} flexWrap="wrap">
               {tools.map(tool => (
-                <Badge key={tool} borderWidth="1px" borderColor="line" bg="transparent" color="muted">
+                <Badge
+                  key={tool}
+                  borderWidth="1px"
+                  borderColor="line"
+                  bg="transparent"
+                  color="muted"
+                >
                   {tool}
                 </Badge>
               ))}
@@ -370,8 +430,11 @@ export const GraphicsGridItem = ({
       </SurfaceCard>
 
       <Modal isOpen={isOpen} onClose={onClose} size="6xl" isCentered>
-        <ModalOverlay bg="rgba(23, 25, 28, 0.38)" />
-        <ModalContent maxW={['95vw', '92vw', '86vw']} h={['90vh', '88vh', '86vh']}>
+        <ModalOverlay bg="rgba(23, 25, 28, 0.5)" />
+        <ModalContent
+          maxW={['95vw', '92vw', '86vw']}
+          h={['90vh', '88vh', '86vh']}
+        >
           <ModalHeader>{title}</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={5} overflow="hidden">
@@ -396,10 +459,18 @@ export const GraphicsGridItem = ({
 
                 <TabPanels flex="1" minH={0} overflow="hidden">
                   <TabPanel p={0} pt={4} h="100%" minH={0}>
-                    {renderGalleryPanel(designImages, 'No design images added yet.', 'design')}
+                    {renderGalleryPanel(
+                      designImages,
+                      'No design images added yet.',
+                      'design'
+                    )}
                   </TabPanel>
                   <TabPanel p={0} pt={4} h="100%" minH={0}>
-                    {renderGalleryPanel(realWorldImages, 'No real-world photos available yet.', 'real-world')}
+                    {renderGalleryPanel(
+                      realWorldImages,
+                      'No real-world photos available yet.',
+                      'real-world'
+                    )}
                   </TabPanel>
                 </TabPanels>
               </Tabs>

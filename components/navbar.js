@@ -41,8 +41,8 @@ const LinkItem = ({ href, path, children }) => {
       display="inline-flex"
       alignItems="center"
       justifyContent="center"
-      px={4}
-      py={2.5}
+      px={{ md: 3.5, lg: 4 }}
+      py={2}
       borderRadius="full"
       fontSize="sm"
       fontWeight="600"
@@ -81,16 +81,16 @@ const Navbar = ({ path }) => {
       borderBottomWidth="1px"
       borderColor="line"
     >
-      <Container maxW="1160px" py={3}>
-        <Flex align="center" justify="space-between" gap={6}>
+      <Container maxW="1160px" py={{ base: 2.5, md: 2 }}>
+        <Flex align="center" justify="space-between" gap={{ base: 4, md: 5 }}>
           <Heading as="h1" size="md">
             <Logo />
           </Heading>
 
           <Stack
             direction="row"
-            spacing={1.5}
-            p={1.5}
+            spacing={1}
+            p={1}
             display={{ base: 'none', md: 'flex' }}
             align="center"
             borderWidth="1px"
@@ -98,7 +98,7 @@ const Navbar = ({ path }) => {
             borderRadius="full"
             bg="rgba(248, 247, 242, 0.72)"
             backdropFilter="blur(16px)"
-            boxShadow="0 12px 30px rgba(23, 25, 28, 0.04)"
+            boxShadow="0 10px 24px rgba(23, 25, 28, 0.04)"
           >
             {navItems.map(item => (
               <LinkItem key={item.href} href={item.href} path={path}>

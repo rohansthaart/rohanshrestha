@@ -16,21 +16,26 @@ const Arts = () => {
             <Heading as="h1" variant="page-title" maxW={'full'}>
               Personal work that keeps the eye honest.
             </Heading>
-            <Text color="muted" fontSize={{ base: 'lg', md: 'xl' }} width="100%">
-              Drawing and painting are part of how I keep observing, composing, and paying
-              attention to detail outside of software.
+            <Text
+              color="muted"
+              fontSize={{ base: 'lg', md: 'xl' }}
+              width="100%"
+            >
+              Drawing and painting are part of how I keep observing, composing,
+              and paying attention to detail outside of software.
             </Text>
           </Stack>
         </Section>
 
         <Section mb={0}>
           <SimpleGrid columns={{ base: 1, md: 2 }} gap={6}>
-            {artCollections.map(collection => (
+            {artCollections.map((collection, index) => (
               <ArtGridItem
                 key={collection.slug}
                 id={collection.slug}
                 title={collection.title}
                 thumbnail={collection.thumbnail}
+                priority={index === 0}
               >
                 {collection.intro}
               </ArtGridItem>

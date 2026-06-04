@@ -1,11 +1,11 @@
 import NextLink from 'next/link'
+import NextImage from 'next/image'
 import {
   AspectRatio,
   Box,
   Button,
   Grid,
   Heading,
-  Image,
   Link,
   SimpleGrid,
   Stack,
@@ -34,10 +34,14 @@ const Works = () => {
             <Heading as="h1" variant="page-title" maxW={'full'}>
               Product and website work built to ship.
             </Heading>
-            <Text color="muted" fontSize={{ base: 'lg', md: 'xl' }} width="100%">
-              A selection of full-stack products, public websites, and operational platforms.
-              The through-line is ownership: carrying ideas into working interfaces and
-              production-ready delivery.
+            <Text
+              color="muted"
+              fontSize={{ base: 'lg', md: 'xl' }}
+              width="100%"
+            >
+              A selection of full-stack products, public websites, and
+              operational platforms. The through-line is ownership: carrying
+              ideas into working interfaces and production-ready delivery.
             </Text>
           </Stack>
         </Section>
@@ -51,16 +55,37 @@ const Works = () => {
               bg="paperElevated"
               overflow="hidden"
             >
-              <Grid templateColumns={{ base: '1fr', lg: 'minmax(0, 1.1fr) minmax(360px, 0.9fr)' }}>
-                <AspectRatio ratio={1.15} minH={{ base: '260px', lg: '420px' }} bg="surface">
-                  <Image
-                    src={featured.thumbnail.src}
-                    alt={featured.title}
-                    w="100%"
-                    h="100%"
-                    objectFit="cover"
-                  />
-                </AspectRatio>
+              <Grid
+                templateColumns={{
+                  base: '1fr',
+                  lg: 'minmax(0, 1.1fr) minmax(360px, 0.9fr)'
+                }}
+              >
+                <Box p={{ base: 4, md: 6 }} bg="surface">
+                  <AspectRatio
+                    ratio={16 / 11}
+                    minH={{ base: '260px', lg: '420px' }}
+                  >
+                    <Box
+                      position="relative"
+                      w="100%"
+                      h="100%"
+                      borderRadius="24px"
+                      overflow="hidden"
+                      bg="paper"
+                    >
+                      <NextImage
+                        src={featured.thumbnail}
+                        alt={featured.title}
+                        fill
+                        priority
+                        placeholder="blur"
+                        sizes="(max-width: 62em) 100vw, 54vw"
+                        style={{ objectFit: 'contain', padding: '20px' }}
+                      />
+                    </Box>
+                  </AspectRatio>
+                </Box>
 
                 <Box p={{ base: 6, md: 8 }}>
                   <Text textStyle="eyebrow" color="accent" mb={4}>
@@ -118,13 +143,16 @@ const Works = () => {
                   boxShadow="card"
                 >
                   <AspectRatio ratio={16 / 10} bg="surface">
-                    <Image
-                      src={project.thumbnail.src}
-                      alt={project.title}
-                      w="100%"
-                      h="100%"
-                      objectFit="cover"
-                    />
+                    <Box position="relative" w="100%" h="100%">
+                      <NextImage
+                        src={project.thumbnail}
+                        alt={project.title}
+                        fill
+                        placeholder="blur"
+                        sizes="(max-width: 48em) 100vw, 48vw"
+                        style={{ objectFit: 'cover' }}
+                      />
+                    </Box>
                   </AspectRatio>
 
                   <Stack spacing={4} p={{ base: 5, md: 6 }}>
@@ -173,13 +201,16 @@ const Works = () => {
                   overflow="hidden"
                 >
                   <AspectRatio ratio={16 / 10} bg="surface">
-                    <Image
-                      src={project.thumbnail.src}
-                      alt={project.title}
-                      w="100%"
-                      h="100%"
-                      objectFit="cover"
-                    />
+                    <Box position="relative" w="100%" h="100%">
+                      <NextImage
+                        src={project.thumbnail}
+                        alt={project.title}
+                        fill
+                        placeholder="blur"
+                        sizes="(max-width: 48em) 100vw, 31vw"
+                        style={{ objectFit: 'cover' }}
+                      />
+                    </Box>
                   </AspectRatio>
                   <Stack spacing={3} p={5}>
                     <Text textStyle="micro" color="accent">

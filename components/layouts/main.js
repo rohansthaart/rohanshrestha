@@ -13,7 +13,11 @@ const Main = ({ children, router }) => {
           content="Portfolio of Rohan Shrestha, a full-stack developer and visual designer based in Kathmandu."
         />
         <meta name="author" content="Rohan Shrestha" />
-        <link rel="shortcut icon" href="/images/logo-dark.png" type="image/x-icon" />
+        <link
+          rel="shortcut icon"
+          href="/images/logo-dark.png"
+          type="image/x-icon"
+        />
         <title>Rohan Shrestha | Portfolio</title>
       </Head>
 
@@ -21,7 +25,7 @@ const Main = ({ children, router }) => {
 
       <Container
         maxW="1160px"
-        pt={{ base: 28, md: 32 }}
+        pt={{ base: 20, md: 22 }}
         pb={{ base: 16, md: 20 }}
       >
         {children}

@@ -1,7 +1,8 @@
 import { useState } from 'react'
+import NextImage from 'next/image'
 import {
+  AspectRatio,
   Box,
-  Image,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -54,7 +55,17 @@ const ArtThumbnailList = ({ numOfImages, urlForImage, alt }) => {
                   }
                 }}
               >
-                <Image src={imageSrc} alt={`${alt} ${i}`} w="100%" />
+                <AspectRatio ratio={3 / 4} bg="surface">
+                  <Box position="relative" w="100%" h="100%">
+                    <NextImage
+                      src={imageSrc}
+                      alt={`${alt} ${i}`}
+                      fill
+                      sizes="(max-width: 48em) 50vw, 25vw"
+                      style={{ objectFit: 'cover' }}
+                    />
+                  </Box>
+                </AspectRatio>
               </Box>
             )
           })}
@@ -68,12 +79,22 @@ const ArtThumbnailList = ({ numOfImages, urlForImage, alt }) => {
           <ModalBody pb={6}>
             {selectedImage ? (
               <>
-                <Image
-                  src={selectedImage}
-                  alt={`${alt} expanded preview`}
+                <Box
+                  position="relative"
                   w="100%"
+                  minH={{ base: '50vh', md: '70vh' }}
                   borderRadius="20px"
-                />
+                  overflow="hidden"
+                  bg="surface"
+                >
+                  <NextImage
+                    src={selectedImage}
+                    alt={`${alt} expanded preview`}
+                    fill
+                    sizes="(max-width: 48em) 92vw, 74vw"
+                    style={{ objectFit: 'contain' }}
+                  />
+                </Box>
                 <Text color="muted" fontSize="sm" mt={3}>
                   Expanded view from the {alt.toLowerCase()} collection.
                 </Text>

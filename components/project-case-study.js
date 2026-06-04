@@ -1,4 +1,5 @@
 import NextLink from 'next/link'
+import NextImage from 'next/image'
 import {
   AspectRatio,
   Badge,
@@ -7,7 +8,6 @@ import {
   Container,
   Grid,
   Heading,
-  Image,
   Link,
   List,
   ListItem,
@@ -45,13 +45,22 @@ const ProjectCaseStudy = ({ project }) => {
       <Container maxW="1160px">
         <Stack spacing={{ base: 10, md: 14 }}>
           <Box borderBottomWidth="1px" borderColor="line" pb={6}>
-            <Link as={NextLink} href="/works" color="muted" fontSize="sm" fontWeight="600">
+            <Link
+              as={NextLink}
+              href="/works"
+              color="muted"
+              fontSize="sm"
+              fontWeight="600"
+            >
               Projects
             </Link>
           </Box>
 
           <Grid
-            templateColumns={{ base: '1fr', xl: 'minmax(0, 0.95fr) minmax(0, 1.05fr)' }}
+            templateColumns={{
+              base: '1fr',
+              xl: 'minmax(0, 0.95fr) minmax(0, 1.05fr)'
+            }}
             gap={{ base: 8, xl: 10 }}
             alignItems="start"
           >
@@ -85,7 +94,13 @@ const ProjectCaseStudy = ({ project }) => {
                 px={{ base: 5, md: 6 }}
                 py={{ base: 5, md: 6 }}
               >
-                <Grid templateColumns={{ base: '1fr', md: 'repeat(2, minmax(0, 1fr))' }} gap={6}>
+                <Grid
+                  templateColumns={{
+                    base: '1fr',
+                    md: 'repeat(2, minmax(0, 1fr))'
+                  }}
+                  gap={6}
+                >
                   <Box>
                     <MetaRow label="Year" value={project.year} />
                     <MetaRow label="Role" value={project.role} />
@@ -133,20 +148,35 @@ const ProjectCaseStudy = ({ project }) => {
               overflow="hidden"
               bg="surface"
               boxShadow="card"
-              p={{ base: 4, md: 6 }}
+              p={{ base: 3, md: 5 }}
             >
-              <Image
-                src={project.heroImage}
-                alt={project.title}
-                w="100%"
-                h="auto"
-                objectFit="contain"
-                display="block"
-              />
+              <AspectRatio
+                ratio={16 / 11}
+                minH={{ base: '260px', md: '420px' }}
+              >
+                <Box
+                  position="relative"
+                  borderRadius="26px"
+                  overflow="hidden"
+                  bg="paper"
+                >
+                  <NextImage
+                    src={project.heroImage}
+                    alt={project.title}
+                    fill
+                    priority
+                    sizes="(max-width: 48em) 100vw, 52vw"
+                    style={{ objectFit: 'contain', padding: '20px' }}
+                  />
+                </Box>
+              </AspectRatio>
             </Box>
           </Grid>
 
-          <Grid templateColumns={{ base: '1fr', lg: 'repeat(2, minmax(0, 1fr))' }} gap={6}>
+          <Grid
+            templateColumns={{ base: '1fr', lg: 'repeat(2, minmax(0, 1fr))' }}
+            gap={6}
+          >
             <Box
               borderWidth="1px"
               borderColor="line"
@@ -203,14 +233,18 @@ const ProjectCaseStudy = ({ project }) => {
                     boxShadow="card"
                   >
                     <AspectRatio ratio={16 / 10} bg="surface">
-                      <Image
-                        src={image}
-                        alt={`${project.title} screen ${index + 1}`}
-                        w="100%"
-                        h="100%"
-                        objectFit="contain"
-                        p={index === 0 ? 0 : 3}
-                      />
+                      <Box position="relative" w="100%" h="100%">
+                        <NextImage
+                          src={image}
+                          alt={`${project.title} screen ${index + 1}`}
+                          fill
+                          sizes="(max-width: 48em) 100vw, 48vw"
+                          style={{
+                            objectFit: 'contain',
+                            padding: index === 0 ? '0px' : '12px'
+                          }}
+                        />
+                      </Box>
                     </AspectRatio>
                   </Box>
                 ))}
