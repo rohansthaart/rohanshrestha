@@ -34,7 +34,7 @@ const socialLinks = [
   },
   {
     label: 'Facebook',
-    href: 'https://www.facebook.com/rohanstha.jsx/',
+    href: 'https://www.facebook.com/rohan.shrestha.940/',
     handle: 'Rohan Shrestha',
     note: 'Personal profile and broader public updates.',
     icon: SiFacebook
